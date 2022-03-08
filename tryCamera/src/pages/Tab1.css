@@ -1,0 +1,10 @@
+ion-content ion-toolbar {
+  --background: translucent;
+}
+
+.step {
+ display:inline-block;
+}
+.step li {
+margin:2em;
+}
