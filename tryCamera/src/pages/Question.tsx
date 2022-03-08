@@ -50,8 +50,12 @@ function Question() {
                 {currentQ === 3 && <Q3/>}
                 {currentQ === 4 && <Q4/>}
                 
-
-
+                {currentQ === 5 && <>
+                Are you ready submit?
+                <button type='submit' onClick={()=>{
+                    
+                }}>Submit</button>
+                </>} 
             </IonContent>
             <IonFooter>
                 <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>

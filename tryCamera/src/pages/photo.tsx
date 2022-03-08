@@ -8,6 +8,20 @@ const Photo1: React.FC = () => {
   const [photoToDelete, setPhotoToDelete] = useState<UserPhoto>();
   const [photoToSubmit, setPhotoToSubmit] = useState<UserPhoto>();
 
+  {
+    /*{
+            const photoList = photos.map(p=>p.webviewPath); //['data:image/...','data:image/...']
+            const res = await fetch("/submitForm",{
+              method:"POST",
+              headers:{
+                "content-type":"application/json"
+              },
+              body:JSON.stringify({
+                imageData: photoList
+              })
+            })
+          } */
+  }
   return (
     <IonPage>
       <IonHeader>
@@ -32,7 +46,7 @@ const Photo1: React.FC = () => {
         </IonGrid>
 
         <IonFab vertical="bottom" horizontal="center" slot="fixed">
-          <IonFabButton onClick={() => takePhoto()}>
+          <IonFabButton onClick={async() => takePhoto()}>
             <IonIcon icon={camera}></IonIcon>
           </IonFabButton>
         </IonFab>

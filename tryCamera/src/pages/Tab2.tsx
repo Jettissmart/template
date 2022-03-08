@@ -24,6 +24,7 @@ const Tab2: React.FC = () => {
           <IonRow>
             {photos.map((photo, index) => (
               <IonCol size="6" key={index}>
+                {console.log(photo)}
                 <IonImg onClick={() => setPhotoToDelete(photo)} src={photo.webviewPath} />
               </IonCol>
             ))}
