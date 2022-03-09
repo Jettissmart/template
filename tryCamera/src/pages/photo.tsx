@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFab, IonFabButton, IonIcon, IonGrid, IonRow, IonCol, IonImg, IonActionSheet } from '@ionic/react';
-import { camera, trash, close, documentAttach } from 'ionicons/icons';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFab, IonFabButton, IonIcon, IonGrid, IonRow, IonCol, IonImg, IonActionSheet, IonButton, IonFooter } from '@ionic/react';
+import { camera, trash, close, documentAttach, clipboard, arrowUp } from 'ionicons/icons';
 import { usePhotoGallery, UserPhoto } from '../hooks/usePhotoGallery';
 
-const Photo1: React.FC = () => {
+const Photo: React.FC = () => {
   const { deletePhoto, photos, takePhoto } = usePhotoGallery();
   const [photoToDelete, setPhotoToDelete] = useState<UserPhoto>();
-  const [photoToSubmit, setPhotoToSubmit] = useState<UserPhoto>();
+  // const [photoToSubmit, setPhotoToSubmit] = useState<UserPhoto>();
 
   {
     /*{
@@ -40,20 +40,28 @@ const Photo1: React.FC = () => {
             {photos.map((photo, index) => (
               <IonCol size="6" key={index}>
                 <IonImg onClick={() => setPhotoToDelete(photo)} src={photo.webviewPath} />
+                {console.log(photo.webviewPath)}
               </IonCol>
             ))}
           </IonRow>
         </IonGrid>
-
+         
         <IonFab vertical="bottom" horizontal="center" slot="fixed">
           <IonFabButton onClick={async() => takePhoto()}>
             <IonIcon icon={camera}></IonIcon>
           </IonFabButton>
         </IonFab>
-
+         
         <IonActionSheet
           isOpen={!!photoToDelete}
           buttons={[{
+            text: 'submit as tongue top',
+            icon: arrowUp,
+            role: 'selected',
+            handler:()=>{
+              
+            }
+          },{
             text: 'Delete',
             role: 'destructive',
             icon: trash,
@@ -73,8 +81,9 @@ const Photo1: React.FC = () => {
 
 
       </IonContent>
+    
     </IonPage>
   );
 };
 
-export default Photo1;
+export default Photo;

@@ -4,9 +4,10 @@ import { list } from 'ionicons/icons';
 import Q1 from '../components/Q1';
 import Q2 from '../components/Q2';
 import Q3 from '../components/Q3';
-import Tab2 from './Tab2';
-import Photo1 from './photo';
+
 import Q4 from '../components/Q4';
+import Q5 from '../components/Q5';
+import Upload from '../components/Upload';
 
 function Question() {
     const [currentQ, setCurrentQ] = useState(1);
@@ -25,7 +26,7 @@ function Question() {
         }
     }
     const nextPage = () => {
-        if (currentQ + 1 < 6) {
+        if (currentQ + 1 < 7) {
             setCurrentQ(currentQ + 1);
         }
 
@@ -45,10 +46,9 @@ function Question() {
                 {currentQ === 1 && <Q1/>}
 
                 {currentQ === 2 && <Q2/>}
-               
-
                 {currentQ === 3 && <Q3/>}
                 {currentQ === 4 && <Q4/>}
+<<<<<<< HEAD
                 
                 {currentQ === 5 && <>
                 Are you ready submit?
@@ -56,6 +56,13 @@ function Question() {
                     
                 }}>Submit</button>
                 </>} 
+=======
+
+                {currentQ === 5 && <Q5/>}
+                {currentQ === 6 && <Upload/>}
+
+
+>>>>>>> 4892a6923c9c2d0ccd25052521eccc73893072bf
             </IonContent>
             <IonFooter>
                 <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>

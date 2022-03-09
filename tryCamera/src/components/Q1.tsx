@@ -1,4 +1,4 @@
-import { IonButton, IonContent, IonHeader, IonItem, IonLabel, IonList, IonPage, IonProgressBar, IonRadio, IonRadioGroup, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonContent, IonGrid, IonHeader, IonItem, IonLabel, IonList, IonPage, IonProgressBar, IonRadio, IonRadioGroup, IonTitle, IonToolbar } from '@ionic/react';
 import React, { useState } from 'react';
 
 
@@ -17,6 +17,7 @@ const Q1: React.FC = () => {
 
 
                         <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }} >
+                           <IonGrid>
                            <IonList>
                                <IonRadioGroup value={selected} onIonChange={e=> setSelected(e.detail.value)}>
                                    <IonItem>
@@ -51,7 +52,7 @@ const Q1: React.FC = () => {
                                </IonRadioGroup>
                                
                            </IonList>
-                          
+                           </IonGrid>
 
                         </div>
                     </div>
