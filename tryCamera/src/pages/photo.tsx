@@ -6,22 +6,8 @@ import { usePhotoGallery, UserPhoto } from '../hooks/usePhotoGallery';
 const Photo: React.FC = () => {
   const { deletePhoto, photos, takePhoto } = usePhotoGallery();
   const [photoToDelete, setPhotoToDelete] = useState<UserPhoto>();
-  // const [photoToSubmit, setPhotoToSubmit] = useState<UserPhoto>();
+  const [photoToSubmit, setPhotoToSubmit] = useState(null);
 
-  {
-    /*{
-            const photoList = photos.map(p=>p.webviewPath); //['data:image/...','data:image/...']
-            const res = await fetch("/submitForm",{
-              method:"POST",
-              headers:{
-                "content-type":"application/json"
-              },
-              body:JSON.stringify({
-                imageData: photoList
-              })
-            })
-          } */
-  }
   return (
     <IonPage>
       <IonHeader>
@@ -47,7 +33,7 @@ const Photo: React.FC = () => {
         </IonGrid>
          
         <IonFab vertical="bottom" horizontal="center" slot="fixed">
-          <IonFabButton onClick={async() => takePhoto()}>
+          <IonFabButton onClick={() => takePhoto()}>
             <IonIcon icon={camera}></IonIcon>
           </IonFabButton>
         </IonFab>
