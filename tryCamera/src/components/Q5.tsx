@@ -3,7 +3,7 @@ import React from 'react';
 
 
 
-const Q4: React.FC = () => {
+const Q5: React.FC = () => {
     return (
         <div style={{ margin: "1em" }}>
                         <IonProgressBar value={0.75}></IonProgressBar>
@@ -39,4 +39,4 @@ const Q4: React.FC = () => {
     )};
 
 
-export default Q4;
+export default Q5;

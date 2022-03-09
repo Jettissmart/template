@@ -1,19 +1,19 @@
 import { IonButton, IonContent, IonHeader, IonItem, IonLabel, IonList, IonPage, IonProgressBar, IonRadio, IonRadioGroup, IonTitle, IonToolbar } from '@ionic/react';
 import React, { useState } from 'react';
-import Photo from '../pages/Photo';
+
 
 
 
 const Upload: React.FC = () => {
     const [selected,setSelected] = useState<string>('null');
-    const openCamera =()=>{
-       return(
-           <IonPage>
-<Photo/>
+//     const openCamera =()=>{
+//        return(
+//            <IonPage>
+// <Photo/>
        
-           </IonPage>
-        )
-    }
+//            </IonPage>
+//         )
+//     }
     return (
         <div style={{ margin: "1em" }}>
                         <IonProgressBar value={1}></IonProgressBar>
@@ -25,7 +25,7 @@ const Upload: React.FC = () => {
 
                         </IonHeader>
                         <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }} >
-                           <IonButton onClick={openCamera}> 上載舌面照片</IonButton>
+                           <IonButton href="/photo"> 上載舌面照片</IonButton>
                            <IonButton>上載舌底照片</IonButton>
 
                         </div>

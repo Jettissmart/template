@@ -6,10 +6,10 @@ import React from 'react';
 
 const Q3: React.FC = () => {
     const symptoms=[
-        { id: 9, symptom: "difficulty breathing", level:0 },
-        { id: 10, symptom: "chest pain", level:0 },
-        { id: 11, symptom: "loss of taste or smell", level:0 },
-        { id: 12, symptom: "new confusion", level:0 },
+        { id: 9, symptom: "difficulty breathing", level:"0" },
+        { id: 10, symptom: "chest pain", level:"0" },
+        { id: 11, symptom: "loss of taste or smell", level:"0" },
+        { id: 12, symptom: "new confusion", level:"0" },
     ]
     return (
         <div style={{ margin: "1em" }}>
