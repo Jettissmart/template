@@ -10,7 +10,7 @@ import {
   IonTabs
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { square, triangle, images, clipboard } from 'ionicons/icons';
+import { square, clipboard, chatbubbleEllipses, person } from 'ionicons/icons';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
@@ -65,12 +65,12 @@ const App: React.FC = () => (
                 <IonLabel>Questionaire</IonLabel>
               </IonTabButton>
               <IonTabButton tab="tab2" href="/tabs/tab2">
-                <IonIcon icon={images} />
-                <IonLabel>Photos</IonLabel>
+                <IonIcon icon={chatbubbleEllipses} />
+                <IonLabel>Contact Us</IonLabel>
               </IonTabButton>
               <IonTabButton tab="tab3" href="/tabs/tab3">
-                <IonIcon icon={square} />
-                <IonLabel>Tab Three</IonLabel>
+                <IonIcon icon={person} />
+                <IonLabel>My Profile</IonLabel>
               </IonTabButton>
             </IonTabBar>
           </IonTabs>

@@ -22,7 +22,7 @@ const Q2: React.FC = () => {
 
                             <h3>您有什麼症狀？</h3>
                             <h3>What are the symptoms you have? </h3>
-
+                            <h5>程度0分是沒有症狀，4分為最嚴重</h5>
                         </IonHeader>
                         <IonGrid>
       <IonCol>

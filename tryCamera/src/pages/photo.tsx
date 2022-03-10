@@ -3,11 +3,12 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFab, IonFabBut
 import { camera, trash, close, documentAttach, clipboard, arrowUp } from 'ionicons/icons';
 import { usePhotoGallery, UserPhoto } from '../hooks/usePhotoGallery';
 
-const Photo: React.FC = () => {
+
+const Photo : React.FC = (props:any) => {
   const { deletePhoto, photos, takePhoto } = usePhotoGallery();
   const [photoToDelete, setPhotoToDelete] = useState<UserPhoto>();
-  // const [photoToSubmit, setPhotoToSubmit] = useState<UserPhoto>();
-
+  const [photoToSubmit, setPhotoToSubmit] = useState<number>();
+  const [page, setPage] = useState(0);
   return (
     <IonPage>
       <IonHeader>
@@ -40,14 +41,19 @@ const Photo: React.FC = () => {
          
         <IonActionSheet
           isOpen={!!photoToDelete}
-          buttons={[{
+          buttons={[
+            {
             text: 'submit as tongue top',
             icon: arrowUp,
             role: 'selected',
-            handler:()=>{
+            handler:()=>{ 
+                onsubmit=()=>{props.Photos}
+                setPage(0);
+                // setPhotoToSubmit();
               
             }
-          },{
+          },
+          {
             text: 'Delete',
             role: 'destructive',
             icon: trash,
@@ -73,3 +79,5 @@ const Photo: React.FC = () => {
 };
 
 export default Photo;
+
+
