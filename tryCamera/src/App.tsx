@@ -16,7 +16,7 @@ import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
 import Details from './pages/Details';
 import Question from './pages/Question';
-import Photo from './pages/Photo';
+import Photo from './pages/photo';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';

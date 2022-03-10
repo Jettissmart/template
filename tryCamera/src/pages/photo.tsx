@@ -3,7 +3,7 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFab, IonFabBut
 import { camera, trash, close, documentAttach, clipboard, arrowUp } from 'ionicons/icons';
 import { usePhotoGallery, UserPhoto } from '../hooks/usePhotoGallery';
 
-const Photo: React.FC = () => {
+const Photo: React.FC<any> = (props:any) => {
   const { deletePhoto, photos, takePhoto } = usePhotoGallery();
   const [photoToDelete, setPhotoToDelete] = useState<UserPhoto>();
   // const [photoToSubmit, setPhotoToSubmit] = useState<UserPhoto>();
@@ -59,7 +59,7 @@ const Photo: React.FC = () => {
             icon: arrowUp,
             role: 'selected',
             handler:()=>{
-              
+              props.onSubmit();
             }
           },{
             text: 'Delete',

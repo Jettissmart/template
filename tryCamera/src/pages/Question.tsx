@@ -11,6 +11,7 @@ import Upload from '../components/Upload';
 
 function Question() {
     const [currentQ, setCurrentQ] = useState(1);
+    const [formData, setFormData] = useState({});
     const optionQ1 = [
         { id: 1, text: "positive test result" },
         { id: 2, text: "negative test result" },
@@ -43,26 +44,18 @@ function Question() {
             </IonHeader>
             <IonContent fullscreen>
 
-                {currentQ === 1 && <Q1/>}
+                {currentQ === 1 && <Q1 onSubmit={(answer:any)=>{
+                    setFormData({...formData,test_result:answer})
+                }}/>}
 
                 {currentQ === 2 && <Q2/>}
                 {currentQ === 3 && <Q3/>}
                 {currentQ === 4 && <Q4/>}
-<<<<<<< HEAD
-                
-                {currentQ === 5 && <>
-                Are you ready submit?
-                <button type='submit' onClick={()=>{
-                    
-                }}>Submit</button>
-                </>} 
-=======
 
                 {currentQ === 5 && <Q5/>}
                 {currentQ === 6 && <Upload/>}
 
-
->>>>>>> 4892a6923c9c2d0ccd25052521eccc73893072bf
+                 {/*TODO: next page*/}
             </IonContent>
             <IonFooter>
                 <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
