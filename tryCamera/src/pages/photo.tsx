@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFab, IonFabButton, IonIcon, IonGrid, IonRow, IonCol, IonImg, IonActionSheet, IonButton, IonFooter } from '@ionic/react';
-import { camera, trash, close, documentAttach, clipboard, arrowUp } from 'ionicons/icons';
+import { camera, trash, close, arrowUp } from 'ionicons/icons';
 import { usePhotoGallery, UserPhoto } from '../hooks/usePhotoGallery';
 
 
-const Photo : React.FC = (props:any) => {
+const Photo : React.FC<any> = (props:any) => {
   const { deletePhoto, photos, takePhoto } = usePhotoGallery();
   const [photoToDelete, setPhotoToDelete] = useState<UserPhoto>();
   const [photoToSubmit, setPhotoToSubmit] = useState<number>();
@@ -47,9 +47,7 @@ const Photo : React.FC = (props:any) => {
             icon: arrowUp,
             role: 'selected',
             handler:()=>{ 
-                onsubmit=()=>{props.Photos}
-                setPage(0);
-                // setPhotoToSubmit();
+                props.onSelected((0))
               
             }
           },

@@ -10,11 +10,11 @@ import Q5 from '../components/Q5';
 import Upload from '../components/Upload';
 
 function Question() {
+    const [formData, setFormData] = useState<Array>([])
     const [currentQ, setCurrentQ] = useState(1);
-    const optionQ1 = [
-        { id: 1, text: "positive test result" },
-        { id: 2, text: "negative test result" },
-    ]
+    
+
+    
 
     
     const selected = () => {
