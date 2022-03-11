@@ -34,7 +34,7 @@ const Photo : React.FC<any> = (props:any) => {
         </IonGrid>
          
         <IonFab vertical="bottom" horizontal="center" slot="fixed">
-          <IonFabButton onClick={async() => takePhoto()}>
+          <IonFabButton onClick={() => takePhoto()}>
             <IonIcon icon={camera}></IonIcon>
           </IonFabButton>
         </IonFab>

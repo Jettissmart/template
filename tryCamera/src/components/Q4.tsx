@@ -24,7 +24,7 @@ const Q4: React.FC = () => {
 
 
         { id: 14, symptom: "fatigue", level: 0 },
-        { id: 15, symptom: "feeling cold", level: 0 },
+        { id: 15, symptom: "feeling cold", level: 0 }, 
 
     ]
     return (
