@@ -3,25 +3,12 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFab, IonFabBut
 import { camera, trash, close, documentAttach, clipboard, arrowUp } from 'ionicons/icons';
 import { usePhotoGallery, UserPhoto } from '../hooks/usePhotoGallery';
 
-const Photo: React.FC<any> = (props:any) => {
+
+const Photo : React.FC<any> = (props:any) => {
   const { deletePhoto, photos, takePhoto } = usePhotoGallery();
   const [photoToDelete, setPhotoToDelete] = useState<UserPhoto>();
-  // const [photoToSubmit, setPhotoToSubmit] = useState<UserPhoto>();
-
-  {
-    /*{
-            const photoList = photos.map(p=>p.webviewPath); //['data:image/...','data:image/...']
-            const res = await fetch("/submitForm",{
-              method:"POST",
-              headers:{
-                "content-type":"application/json"
-              },
-              body:JSON.stringify({
-                imageData: photoList
-              })
-            })
-          } */
-  }
+  const [photoToSubmit, setPhotoToSubmit] = useState<number>();
+  const [page, setPage] = useState(0);
   return (
     <IonPage>
       <IonHeader>
@@ -54,14 +41,19 @@ const Photo: React.FC<any> = (props:any) => {
          
         <IonActionSheet
           isOpen={!!photoToDelete}
-          buttons={[{
+          buttons={[
+            {
             text: 'submit as tongue top',
             icon: arrowUp,
             role: 'selected',
-            handler:()=>{
-              props.onSubmit();
+            handler:()=>{ 
+                //onsubmit=()=>{props.photos}
+                //setPage(0);
+                // setPhotoToSubmit();
+              props.onSelected(0/*idx*/)
             }
-          },{
+          },
+          {
             text: 'Delete',
             role: 'destructive',
             icon: trash,
@@ -87,3 +79,5 @@ const Photo: React.FC<any> = (props:any) => {
 };
 
 export default Photo;
+
+
