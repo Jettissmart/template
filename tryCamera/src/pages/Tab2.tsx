@@ -24,18 +24,11 @@ const Tab2: React.FC = () => {
            線上中醫診所藥房
            專注於內科調理
           <IonRow>
-<<<<<<< HEAD
-            {photos.map((photo, index) => (
-              <IonCol size="6" key={index}>
-                {console.log(photo)}
-                <IonImg onClick={() => setPhotoToDelete(photo)} src={photo.webviewPath} />
-=======
           遙距診症
           <IonCol >
                 透過WhatsApp診症，中醫師利用舌象診症，線上開出處方，方便慢病或長期調理患者診後調理及復康，省卻診所等候時間。
                 新增服務：
                 即日送藥，針對感冒急症等，快速有效紓緩2019新冠病毒確診症狀
->>>>>>> main
               </IonCol>
           
           </IonRow>

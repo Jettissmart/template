@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFab, IonFabButton, IonIcon, IonGrid, IonRow, IonCol, IonImg, IonActionSheet, IonButton, IonFooter } from '@ionic/react';
-import { camera, trash, close, documentAttach, clipboard, arrowUp } from 'ionicons/icons';
+import { camera, trash, close, arrowUp } from 'ionicons/icons';
 import { usePhotoGallery, UserPhoto } from '../hooks/usePhotoGallery';
 
 
@@ -47,10 +47,8 @@ const Photo : React.FC<any> = (props:any) => {
             icon: arrowUp,
             role: 'selected',
             handler:()=>{ 
-                //onsubmit=()=>{props.photos}
-                //setPage(0);
-                // setPhotoToSubmit();
-              props.onSelected(0/*idx*/)
+                props.onSelected(0)
+              
             }
           },
           {

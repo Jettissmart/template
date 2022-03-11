@@ -4,7 +4,7 @@ import React from 'react';
 
 
 
-const Q2: React.FC = () => {
+const Q2: React.FC<any> = (props:any) => {
     const symptoms=[
         { id: 1, symptom: "cough", level:"0"},
         { id: 2, symptom: "runny nose", level:"0" },
@@ -30,12 +30,19 @@ const Q2: React.FC = () => {
                     {symptoms.map((symptom)=>
                     <IonItem key={symptom.id}>
                     <IonLabel>{symptom.symptom}</IonLabel>
-                    <IonSelect value={symptom.level}>
-                    <IonSelectOption value="0">0 沒有</IonSelectOption>
-                    <IonSelectOption value="1">1 輕微</IonSelectOption>
-                    <IonSelectOption value="2">2 中等</IonSelectOption>
-                    <IonSelectOption value="3">3 嚴重</IonSelectOption>
-                    <IonSelectOption value="4">4 非常嚴重</IonSelectOption>
+                    <IonSelect value={symptom.level} 
+                        onIonChange={
+                            e=>{
+                                props.onSubmit({
+                                    [symptom.symptom]:e.detail.value //{cough:0},{"runny nose":1}
+                                })
+                            }
+                    }>
+                        <IonSelectOption value="0">0 沒有</IonSelectOption>
+                        <IonSelectOption value="1">1 輕微</IonSelectOption>
+                        <IonSelectOption value="2">2 中等</IonSelectOption>
+                        <IonSelectOption value="3">3 嚴重</IonSelectOption>
+                        <IonSelectOption value="4">4 非常嚴重</IonSelectOption>
                     </IonSelect>
                     </IonItem>
                     )}

@@ -10,17 +10,29 @@ import Q5 from '../components/Q5';
 import Upload from '../components/Upload';
 
 function Question() {
+    const [formData, setFormData] = useState<{
+        covid19_test:string
+        cough:number,
+        "runny nose":number,
+        "headache":number,
+        "sore throat":number,
+        "muscle aches":number,
+        "vomiting":number,
+        "diarrhea":number,
+        "abdominal pain":number
+    }>({
+        covid19_test:'',
+        cough:0,
+        "runny nose":0,
+        "headache":0,
+        "sore throat":0,
+        "muscle aches":0,
+        "vomiting":0,
+        "diarrhea":0,
+        "abdominal pain":0
+    })
     const [currentQ, setCurrentQ] = useState(1);
-    const [formData, setFormData] = useState({});
-    const optionQ1 = [
-        { id: 1, text: "positive test result" },
-        { id: 2, text: "negative test result" },
-    ]
-
     
-    const selected = () => {
-
-    }
     const lastPage = () => {
         if (currentQ - 1 > 0) {
             setCurrentQ(currentQ - 1);
@@ -44,16 +56,45 @@ function Question() {
             </IonHeader>
             <IonContent fullscreen>
 
-                {currentQ === 1 && <Q1 onSubmit={(answer:any)=>{
-                    setFormData({...formData,test_result:answer})
+                {currentQ === 1 && <Q1 onSubmit={(answer:string)=>{
+                    setFormData(
+                        {
+                            ...formData,
+                            covid19_test:answer /*positive,-ve,waiting,take no test */
+                        }
+                    )
                 }}/>}
 
-                {currentQ === 2 && <Q2/>}
+                {currentQ === 2 && <Q2 onSubmit={(symptom:any)=>{
+
+                    // const d = {
+                    //     symptom:'s1',
+                    //     level:0
+                    // }
+                    //const d = {s1:0}
+                    //symptom = {cough:0}
+                    /*{
+                        covid19_test:"positive",
+                        cough:0
+                    }*/
+                    setFormData({
+                        ...formData,
+                        ...symptom //{cough:0}
+                    });
+                    //{"runny nose":1}
+                    /*{
+                        covid19_test:"positive",
+                        cough:0,
+                        "runny nose":1
+                    }*/
+
+                    
+                }}/>}
                 {currentQ === 3 && <Q3/>}
                 {currentQ === 4 && <Q4/>}
 
                 {currentQ === 5 && <Q5/>}
-                {currentQ === 6 && <Upload/>}
+                {currentQ === 6 && <Upload onSubmit={()=>{}}/>}
 
                  {/*TODO: next page*/}
             </IonContent>
