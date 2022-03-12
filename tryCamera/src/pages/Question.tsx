@@ -10,7 +10,7 @@ import Q5 from '../components/Q5';
 import Upload from '../components/Upload';
 
 function Question() {
-    const [formData, setFormData] = useState<Array>([])
+    // const [formData, setFormData] = useState<Array>([])
     const [currentQ, setCurrentQ] = useState(1);
     
 

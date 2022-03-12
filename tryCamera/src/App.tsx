@@ -17,6 +17,7 @@ import Tab3 from './pages/Tab3';
 import Details from './pages/Details';
 import Question from './pages/Question';
 import Photo from './pages/Photo';
+import Home from './pages/Tab4';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -42,6 +43,7 @@ import './global.css';
 
 
 
+
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
@@ -49,6 +51,7 @@ const App: React.FC = () => (
 
         <Route path="/question" component={Question} exact={true} />
         <Route path="/photo" component={Photo} exact={true} />
+        <Route path="/tab4" component={Home} exact={true} />
 
         <Route path="/tabs">
           <IonTabs>

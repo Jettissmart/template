@@ -3,12 +3,15 @@ import React, { useState } from 'react';
 import { isPropertySignature, setConstantValue } from 'typescript';
 import { usePhotoGallery } from '../hooks/usePhotoGallery';
 import Photo from '../pages/Photo';
+import { selectImage } from '@beenotung/tslib/file'
+import { compressMobilePhoto, dataURItoBlob } from '@beenotung/tslib/image'
 
 
 // const [page, setPage] = useState(0);
 
 const Upload: React.FC = () => {
     const [page, setPage] = useState(0);
+    const [image, setImage] = useState("");
     const { deletePhoto, photos, takePhoto } = usePhotoGallery();
     const choosePhoto = () => {
         setPage(1)
@@ -38,13 +41,19 @@ const Upload: React.FC = () => {
 
                         }
                         } */}
-                      <img src={JSON.stringify(photos)}></img>
+                      {
+                      image !="" && <img src={JSON.stringify(photos)}></img>}
+
                     </div></>
             }
 
-            {page == 1 && <Photo onSelected={(idx: number) => {
+            {page == 1 && <Photo onSelected={(idx: number) => 
+                {
                 setPage(0);
-                // usePhotoGallery();
+                
+               setImage("your tongue photo");
+               const photo = photos
+               
             }
                 }/>}
         </div>
