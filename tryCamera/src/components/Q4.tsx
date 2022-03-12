@@ -47,11 +47,11 @@ const Q4: React.FC = () => {
                         <IonItem key={0}>
                             <IonLabel>體溫</IonLabel>
                             <IonSelect value="0">
-                                <IonSelectOption value="0">35.8-37.2&#8451; 沒有發燒</IonSelectOption>
-                                <IonSelectOption value="1">37.3-38&#8451; 低燒</IonSelectOption>
-                                <IonSelectOption value="2">38.1-39&#8451; 中燒</IonSelectOption>
-                                <IonSelectOption value="3">39.1-41&#8451;或以上 高燒</IonSelectOption>
-                                <IonSelectOption value="4">41.1&#8451;或以上 超高燒</IonSelectOption>
+                                <IonSelectOption value="35.8-37.2">35.8-37.2&#8451; 沒有發燒</IonSelectOption>
+                                <IonSelectOption value="37.3-38">37.3-38&#8451; 低燒</IonSelectOption>
+                                <IonSelectOption value="38.1-39">38.1-39&#8451; 中燒</IonSelectOption>
+                                <IonSelectOption value="39.1-41">39.1-41&#8451;或以上 高燒</IonSelectOption>
+                                <IonSelectOption value="41.1">41.1&#8451;或以上 超高燒</IonSelectOption>
                             </IonSelect>
                         </IonItem>
 
@@ -59,8 +59,8 @@ const Q4: React.FC = () => {
                         <IonItem key={1}>
                             <IonLabel>痰多少</IonLabel>
                             <IonSelect value="0">
-                                <IonSelectOption value="0">沒有痰</IonSelectOption>
-                                <IonSelectOption value="1">稀痰少</IonSelectOption>
+                                <IonSelectOption value="no">沒有痰</IonSelectOption>
+                                <IonSelectOption value="few">稀痰少</IonSelectOption>
                                 <IonSelectOption value="2">稀痰多</IonSelectOption>
                                 <IonSelectOption value="3">膿痰少</IonSelectOption>
                                 <IonSelectOption value="4">膿痰多</IonSelectOption>
@@ -70,9 +70,9 @@ const Q4: React.FC = () => {
                         <IonItem key={2}>
                             <IonLabel>可否咳出痰</IonLabel>
                             <IonSelect value="0">
-                                <IonSelectOption value="0">沒有痰</IonSelectOption>
-                                <IonSelectOption value="1">可咳出來</IonSelectOption>
-                                <IonSelectOption value="2">咳不出來</IonSelectOption>
+                                <IonSelectOption value="沒有痰">沒有痰</IonSelectOption>
+                                <IonSelectOption value="可咳出來">可咳出來</IonSelectOption>
+                                <IonSelectOption value="咳不出來">咳不出來</IonSelectOption>
                             </IonSelect>
                         </IonItem>
 
