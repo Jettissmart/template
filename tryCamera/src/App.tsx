@@ -1,3 +1,17 @@
+// import Knex from 'knex';
+// const knexConfig = require("./knexfile");
+// const knex = Knex(knexConfig["development"|| process.env.NODE_ENV])
+
+// async function main(){
+//   const staff = await knex.select("*").from ("staff").where("id",">","0");
+//   console.log(staff);
+//   //remeber to close knex after use
+//   knex.destroy();
+// }
+// main();
+
+
+
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import {
@@ -17,7 +31,7 @@ import Tab3 from './pages/Tab3';
 import Details from './pages/Details';
 import Question from './pages/Question';
 import Photo from './pages/Photo';
-import Home from './pages/Tab4';
+import Home from './pages/Home';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -51,7 +65,7 @@ const App: React.FC = () => (
 
         <Route path="/question" component={Question} exact={true} />
         <Route path="/photo" component={Photo} exact={true} />
-        <Route path="/tab4" component={Home} exact={true} />
+        <Route path="/home" component={Home} exact={true} />
 
         <Route path="/tabs">
           <IonTabs>

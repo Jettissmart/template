@@ -116,7 +116,7 @@ import React from 'react'
     )
   }
   
-  const Tab4 = () => {
+  const Home = () => {
     const [formData, setFormData] = useState<FormState>({
       page: 1,
       question1: '',
@@ -141,5 +141,5 @@ import React from 'react'
     )
   }
   
-  export default Tab4
+  export default Home
   
