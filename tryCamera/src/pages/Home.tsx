@@ -137,16 +137,20 @@ function Part2(props: {
   updateFormData: (patch: Partial<FormState>) => void
 }) {
   const { formData, updateFormData } = props
- type chosenState = {"cough":string,
- "runny nose":string,
- "headache":string,
- "sore throat":string,
- "muscle aches":string,
- "vomiting":string,
- "diarrhea":string,
- "abdominal pain":string,}
+ type chosenState = [
+  { symptom: string, level:string  },
+]
 
-  const [chosen, setChosen] = useState<any>({});
+  const [chosen, setChosen] = useState<any>( [
+    {  symptom: "cough", level:"0"  },
+    {  symptom: "runny nose", level: "0" },
+    {  symptom: "headache", level: "0" },
+    {  symptom: "sore throat", level: "0" },
+    {  symptom: "muscle aches", level: "0" },
+    {  symptom: "vomiting", level: "0" },
+    {  symptom: "diarrhea", level: "0" },
+    { symptom: "abdominal pain", level: "0" },
+  ])
   const symptoms = [
     { id: 1, symptom: "cough", level:"0"  },
     { id: 2, symptom: "runny nose", level: "0" },
@@ -176,14 +180,15 @@ function Part2(props: {
                 {symptoms.map((symptom) =>
                   <IonItem key={symptom.id}>
                     <IonLabel>{symptom.symptom}</IonLabel>
-                    <IonSelect value={symptom.level} onIonChange={e =>{
+                    <IonSelect value={chosen.level} onIonChange={e =>{
+                        setChosen({
+
+                          // [symptom.symptom]: e.detail.value,
+                        });
                         updateFormData({
                         [symptom.symptom]: e.detail.value,
                       });
-                      setChosen({
-                        ...chosen,
-                        [symptom.symptom]: e.detail.value,
-                      });
+
                       console.log(e.detail.value);
                       console.log([symptom.symptom]);
                       console.log(chosen);
@@ -303,11 +308,12 @@ const Home = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle>Survey</IonTitle>
+          <p>{JSON.stringify(formData, null, 2)}</p>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
         <Part formData={formData} updateFormData={updateFormData} />
-        <p>{JSON.stringify(formData, null, 2)}</p>
+        {/* <p>{JSON.stringify(formData, null, 2)}</p> */}
       </IonContent>
     </IonPage>
   )
