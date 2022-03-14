@@ -27,7 +27,7 @@ const Photo : React.FC<any> = (props:any) => {
             {photos.map((photo, index) => (
               <IonCol size="6" key={index}>
                 <IonImg onClick={() => setPhotoToDelete(photo)} src={photo.webviewPath} />
-                {console.log(photo.webviewPath)}
+                {console.log(photo)}
               </IonCol>
             ))}
           </IonRow>

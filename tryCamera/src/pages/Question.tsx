@@ -10,6 +10,7 @@ import Q5 from '../components/Q5';
 import Upload from '../components/Upload';
 
 function Question() {
+<<<<<<< HEAD
     const [formData, setFormData] = useState<{
         covid19_test:string
         cough:number,
@@ -31,6 +32,9 @@ function Question() {
         "diarrhea":0,
         "abdominal pain":0
     })
+=======
+    // const [formData, setFormData] = useState<Array>([])
+>>>>>>> main
     const [currentQ, setCurrentQ] = useState(1);
     
     const lastPage = () => {

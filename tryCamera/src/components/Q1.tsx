@@ -27,12 +27,19 @@ const Q1: React.FC<any> = (props:any) => {
             <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }} >
                 <IonGrid>
                     <IonList>
+<<<<<<< HEAD
                         <IonRadioGroup value={selected} onIonChange={
                             (e:any) => {
                                 props.onSubmit(selected);
                                 setSelected(e.detail.value);
                             }
                         }>
+=======
+                        <IonRadioGroup value={selected} onIonChange={e => {
+                            props.onSubmit(selected);
+                        setSelected(e.detail.value);
+                        }}>
+>>>>>>> main
                         <IonItem>
                             <IonRadio slot="start" color="dark" value="positive"></IonRadio>
                             <IonLabel>
