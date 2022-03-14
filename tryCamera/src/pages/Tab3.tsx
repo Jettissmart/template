@@ -1,7 +1,7 @@
 import React from 'react';
 import { IonAvatar, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonItem, IonLabel, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
 import './Tab3.css';
-import { pin, settings, walk, warning, wifi, wine } from 'ionicons/icons';
+import { pin, settings } from 'ionicons/icons';
 import ExploreContainer from '../components/ExploreContainer';
 
 const Tab3: React.FC = () => {
