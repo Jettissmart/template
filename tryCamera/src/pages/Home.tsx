@@ -283,13 +283,19 @@ function Part3(props: {
                         <IonGrid>
       <IonCol>
             <IonList>
-                    {symptoms.map((symptom)=>
+                    {chosen.map((symptom)=>
                     <IonItem key={symptom.id}>
                     <IonLabel>{symptom.symptom}</IonLabel>
-                    <IonSelect value={symptom.level} onIonChange={e =>
-            updateFormData({
-              [symptom.symptom]: e.detail.value,
-            })
+                        <IonSelect value={symptom.level} onIonChange={e => {
+                          const newChoose = chosen.slice(0);//MUST
+                          const updateChoose = newChoose.filter((sym: chosenState) => sym.symptom === symptom.symptom);
+                          updateChoose[0].level = e.detail.value;
+                          setChosen(newChoose);
+
+                          updateFormData({
+                            [symptom.symptom]: e.detail.value,
+                          })
+                        }
           }>
                     <IonSelectOption value="0">0 沒有</IonSelectOption>
                     <IonSelectOption value="1">1 輕微</IonSelectOption>
@@ -338,8 +344,13 @@ function Part4(props: {
   }
 
 
-  const [selected, setSelected] = useState<string>('null');
-]
+  const [bodyTemperature, setBodyTemperature] = useState<string>('null');
+  const [phlegm,setPhlegm] = useState<string>('null');
+  const [phlegmOut, setPhlegmOut]= useState<string>('null');
+  const [phlegmColor, setPhlegmColor]= useState<string>('null');
+  const [cold,setCold] = useState<string>('null');
+  const [tried,setTried]= useState<string>('null');
+
   return (
     <IonPage>
       <IonContent>
@@ -361,12 +372,12 @@ function Part4(props: {
                     )} */}
                         <IonItem key={0}>
                             <IonLabel>體溫</IonLabel>
-                            <IonSelect value="0" onIonChange={e => {
-                  updateFormData({
-                    "body temperature": e.detail.value,
-                  });
-                  setSelected(e.detail.value);
-                }} >
+                  <IonSelect value={bodyTemperature} onIonChange={e => {
+                    updateFormData({
+                      "body temperature": e.detail.value,
+                    });
+                    setBodyTemperature(e.detail.value);
+                  }} >
                                 <IonSelectOption value="35.8-37.2">35.8-37.2&#8451; 沒有發燒</IonSelectOption>
                                 <IonSelectOption value="37.3-38">37.3-38&#8451; 低燒</IonSelectOption>
                                 <IonSelectOption value="38.1-39">38.1-39&#8451; 中燒</IonSelectOption>
@@ -378,11 +389,11 @@ function Part4(props: {
 
                         <IonItem key={1}>
                             <IonLabel>痰多少</IonLabel>
-                            <IonSelect value="0" onIonChange={e => {
+                            <IonSelect value={phlegm} onIonChange={e => {
                   updateFormData({
                     "phlegm amount": e.detail.value,
                   });
-                  setSelected(e.detail.value);
+                  setPhlegm(e.detail.value);
                 }}>
                                 <IonSelectOption value="no">沒有痰</IonSelectOption>
                                 <IonSelectOption value="few">稀痰少</IonSelectOption>
@@ -394,11 +405,11 @@ function Part4(props: {
 
                         <IonItem key={2}>
                             <IonLabel>可否咳出痰</IonLabel>
-                            <IonSelect value="0" onIonChange={e => {
+                            <IonSelect value={phlegmOut} onIonChange={e => {
                   updateFormData({
                     "phlegm out": e.detail.value,
                   });
-                  setSelected(e.detail.value);
+                  setPhlegmOut(e.detail.value);
                 }}>
                                 <IonSelectOption value="no">沒有痰</IonSelectOption>
                                 <IonSelectOption value="can">可咳出來</IonSelectOption>
@@ -409,11 +420,11 @@ function Part4(props: {
 
                         <IonItem key={3}>
                             <IonLabel>痰顏色</IonLabel>
-                            <IonSelect value="0" onIonChange={e => {
+                            <IonSelect value={phlegmColor} onIonChange={e => {
                   updateFormData({
                     "phlegm color": e.detail.value,
                   });
-                  setSelected(e.detail.value);
+                  setPhlegmColor(e.detail.value);
                 }}>
                                 <IonSelectOption value="0">沒有痰</IonSelectOption>
                                 <IonSelectOption value="1">白色</IonSelectOption>
@@ -425,11 +436,11 @@ function Part4(props: {
 
                         <IonItem key={4}>
                             <IonLabel>發冷</IonLabel>
-                            <IonSelect value={"0"||selected} onIonChange={e => {
+                            <IonSelect value={"0"||cold} onIonChange={e => {
                   updateFormData({
                     "feeling cold": e.detail.value,
                   });
-                  setSelected(e.detail.value);
+                  setCold(e.detail.value);
                 }}>
                                 <IonSelectOption value="0">沒有</IonSelectOption>
                                 <IonSelectOption value="1">有</IonSelectOption>
@@ -438,11 +449,11 @@ function Part4(props: {
 
                         <IonItem key={5}>
                             <IonLabel>疲累</IonLabel>
-                            <IonSelect value="0" onIonChange={e => {
+                            <IonSelect value={tried} onIonChange={e => {
                   updateFormData({
                     "fatigue": e.detail.value,
                   });
-                  setSelected(e.detail.value);
+                  setTried(e.detail.value);
                 }} >
                                 <IonSelectOption value="0">沒有</IonSelectOption>
                                 <IonSelectOption value="1">有</IonSelectOption>
