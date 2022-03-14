@@ -164,18 +164,18 @@ function Part2(props: {
     { id: 5, symptom: "muscle aches", level: "0" },
     { id: 6, symptom: "vomiting", level: "0" },
     { id: 7, symptom: "diarrhea", level: "0" },
-    { id: 8, symptom: "abdominal pain", level: "0" },
+    { id: 8, symptom: "abdominal pain", level: "0" }
   ])
-  const symptoms = [
-    { id: 1, symptom: "cough", level: "0" },
-    { id: 2, symptom: "runny nose", level: "0" },
-    { id: 3, symptom: "headache", level: "0" },
-    { id: 4, symptom: "sore throat", level: "0" },
-    { id: 5, symptom: "muscle aches", level: "0" },
-    { id: 6, symptom: "vomiting", level: "0" },
-    { id: 7, symptom: "diarrhea", level: "0" },
-    { id: 8, symptom: "abdominal pain", level: "0" },
-  ]
+  // const symptoms = [
+  //   { id: 1, symptom: "cough", level: "0" },
+  //   { id: 2, symptom: "runny nose", level: "0" },
+  //   { id: 3, symptom: "headache", level: "0" },
+  //   { id: 4, symptom: "sore throat", level: "0" },
+  //   { id: 5, symptom: "muscle aches", level: "0" },
+  //   { id: 6, symptom: "vomiting", level: "0" },
+  //   { id: 7, symptom: "diarrhea", level: "0" },
+  //   { id: 8, symptom: "abdominal pain", level: "0" },
+  // ]
 
 
   return (
@@ -192,22 +192,27 @@ function Part2(props: {
           <IonGrid>
             <IonCol>
               <IonList>
-                {symptoms.map((symptom) =>
+                {chosen.map((symptom) =>
                   <IonItem key={symptom.id}>
                     <IonLabel>{symptom.symptom}</IonLabel>
                     <IonSelect value={symptom.level} onIonChange={e =>{
-                        // setChosen({
-                        //   id:e.detail.key,
-                        //   symptom:[symptom.symptom],
-                        //   level:e.detail.value
-                        // );
+                        const newChoose = chosen.slice(0);//MUST
+                        const updateChoose = newChoose.filter((sym:chosenState)=>sym.symptom === symptom.symptom);
+                        //[{ id: 1, symptom: "cough", level: "0" }]
+                        updateChoose[0].level = e.detail.value;
+                        //[{ id: 1, symptom: "cough", level: "1" }]
+                        setChosen(newChoose);
+                        
+                        // const idx = chosen.findIndex(sym=>sym.symptom === symptom.symptom);
+                        // [...chosen.splice(idx,1),{ id: 1, symptom: "cough", level: "1" }]
+
                         updateFormData({
                           [symptom.symptom]: e.detail.value,
                         });
-                        console.log(e.detail);
-                        console.log(e.detail.value);
-                        console.log([symptom.symptom]);
-                        console.log(chosen);
+                        // console.log(e.detail);
+                        // console.log(e.detail.value);
+                        // console.log([symptom.symptom]);
+                        // console.log(chosen);
                   }
                    }>
                       <IonSelectOption value="0"> 0 沒有</IonSelectOption>
