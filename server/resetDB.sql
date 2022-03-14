@@ -9,9 +9,9 @@ CREATE TABLE "users"(
     "mobile" INTEGER NOT NULL,
     "email" VARCHAR(255) NULL,
     "registered_number" INTEGER NULL,
-    "role" INTEGER NULL,
-    "registered_at" TIMESTAMP(0) WITH TIME zone NOT NULL,
-    "updated_at" TIMESTAMP(0) WITH TIME zone NOT NULL,
+    "role" VARCHAR(255) NULL,
+    "registered_at" TIMESTAMP(0) WITH TIME zone DEFAULT CURRENT_TIMESTAMP ,
+    "updated_at" TIMESTAMP(0) WITH TIME zone DEFAULT CURRENT_TIMESTAMP ,
     "other_info" TEXT NULL
 );
 
@@ -26,7 +26,7 @@ CREATE TABLE "questions"(
     "option_5" VARCHAR(255) NULL,
     "type" VARCHAR(255) NOT NULL,
     "remark" TEXT NULL,
-    "created_at" TIMESTAMP(0) WITH TIME zone NOT NULL
+    "created_at" TIMESTAMP(0) WITH TIME zone DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE "diagnosis"(
@@ -37,15 +37,15 @@ CREATE TABLE "diagnosis"(
     "report_id" INTEGER NOT NULL,
     "patient_id" INTEGER NOT NULL,
     "doctor_id" INTEGER NOT NULL,
-    "created_at" TIMESTAMP(0) WITH TIME zone NOT NULL
+    "created_at" TIMESTAMP(0) WITH TIME zone DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE "case"(
     "id" SERIAL PRIMARY KEY,
     "patient_id" INTEGER NOT NULL,
     "question_id" INTEGER NOT NULL,
-    "answer" INTEGER NOT NULL,
-    "created_at" INTEGER NOT NULL
+    "answer" TEXT NOT NULL,
+    "created_at" TIMESTAMP(0) WITH TIME zone DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE "ai_result"(
@@ -53,8 +53,8 @@ CREATE TABLE "ai_result"(
     "predict_constitution" VARCHAR(255) NOT NULL,
     "predict_drug" TEXT NOT NULL,
     "patient_id" INTEGER NOT NULL,
-    "reported_id" INTEGER NOT NULL,
-    "created_at" TIMESTAMP(0) WITH TIME zone NOT NULL
+    "report_id" INTEGER NOT NULL,
+    "created_at" TIMESTAMP(0) WITH TIME zone DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE "report"(
@@ -64,7 +64,8 @@ CREATE TABLE "report"(
     "qna_list" INTEGER NOT NULL,
     "ai_result_id" INTEGER NOT NULL,
     "diagnosis_id" INTEGER NOT NULL,
-    "status" VARCHAR(255) NOT NULL
+    "status" VARCHAR(255) NOT NULL,
+     "created_at" TIMESTAMP(0) WITH TIME zone DEFAULT CURRENT_TIMESTAMP
 );
 
 ALTER TABLE

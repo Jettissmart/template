@@ -4,4 +4,12 @@ dotenv.config();
 
 
 const app = express();
+
+app.use(express.json());
+
+
+
+
+
+
 app.listen(process.env.PORT, ()=>(console.log( `backend server is listening to PORT ${process.env.PORT}`)))

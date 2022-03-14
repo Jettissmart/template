@@ -465,32 +465,7 @@ function Part4(props: {
   )
 }
 
-// function Part2(props: {
-//   formData: FormState
-//   updateFormData: (patch: Partial<FormState>) => void
-// }) {
-//   const { formData, updateFormData } = props
-//   return (
-//     <>
-//       <IonItem>
-//         <IonLabel>Question 2</IonLabel>
-//         <IonSelect
-//           value={formData.question2}
-//           onIonChange={e =>
-//             updateFormData({
-//               question2: e.detail.value,
-//             })
-//           }
-//         >
-//           <IonSelectOption value="option 3">option 3</IonSelectOption>
-//           <IonSelectOption value="option 4">option 4</IonSelectOption>
-//         </IonSelect>
-//       </IonItem>
-//       <IonButton onClick={() => updateFormData({ page: 1 })}>Prev</IonButton>
-//       <IonButton onClick={() => updateFormData({ page: 3 })}>Next</IonButton>
-//     </>
-//   )
-// }
+
 function Part5(props: {
   formData: FormState
   updateFormData: (patch: Partial<FormState>) => void
@@ -513,14 +488,50 @@ function Part5(props: {
   }
   return (
     <>
+    <div style={{ margin: "1em" }}>
+                        <IonProgressBar value={0.75}></IonProgressBar>
+                        <IonHeader className="ion-text-center" >
+
+                            <h3>請提供您的舌圖 <br />
+                                讓我們更準確地掌握閣下的體質。</h3>
+                            <h3>Please provide two photos of your tongue. </h3>
+
+                        </IonHeader>
+
+                        <div style={{ display: "block", textAlign: "center", flexWrap: "wrap", margin: "0.5em" }} >
+
+                            <div>1. One of the top of your tongue: open your mouth and stick out the tongue 
+                             <div style={{display:"flex",justifyContent: "center" }}><img src="/assets/image/tongue-top.jpeg" style={{width:"5em"}}></img></div>
+                             </div>
+                             {/* <br/> 
+                           
+                            <div>2. One of the bottom of your tongue: place the tip of your tongue against the roof of your mouth and open your jaw 
+                            <div style={{display:"flex",justifyContent: "center" }}><img src="/assets/image/tongue-bottom.jpeg" style={{width:"5em"}}></img></div>
+                            </div> */}
+
+                            <div style={{ display: "inline-block", textAlign: "left"}}>
+                                <ol>Guideline:
+                                    <li>On extension of you tongue it should be done naturally without excessive force.</li>
+                                    <li>You should face the natural sunlight when you take the picture.</li>
+                                    <li>DO NOT take picture after eating or drinking colored food as it may put on artificial color on your tongue</li>
+                                </ol>
+
+                            </div>
+                        </div>
+                    </div>
       <IonItem>
         <IonLabel>Photo</IonLabel>
         <img src={formData.imagePreview} />
         {/* <input type="file" accept="image/*;capture=camera"></input> */}
         <IonButton onClick={pickImage}>pic</IonButton>
       </IonItem>
+      <IonFooter>
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
+
       <IonButton onClick={() => updateFormData({ page: 4 })}>Prev</IonButton>
       <IonButton>Submit</IonButton>
+      </div>
+      </IonFooter>
     </>
   )
 }
