@@ -36,6 +36,16 @@ type FormState = {
   "vomiting": string,
   "diarrhea": string,
   "abdominal pain": string,
+  "difficulty breathing":string ,
+  "chest pain":string ,
+  "loss of taste or smell":string,
+  "new confusion":string,
+  "body temperature":string,
+  "phlegm amount":string,
+  "phlegm out":string,
+  "phlegm color":string,
+  "feeling cold":string,
+  "fatigue":string,
   imagePreview?: string,
   imageFile?: File,
 }
@@ -43,6 +53,8 @@ const parts = {
   1: Part1,
   2: Part2,
   3: Part3,
+  4: Part4,
+  5: Part5,
 }
 
 function Part1(props: {
@@ -183,7 +195,7 @@ function Part2(props: {
                 {symptoms.map((symptom) =>
                   <IonItem key={symptom.id}>
                     <IonLabel>{symptom.symptom}</IonLabel>
-                    <IonSelect value>={symptom.level} onIonChange={e =>{
+                    <IonSelect value={symptom.level} onIonChange={e =>{
                         // setChosen({
                         //   id:e.detail.key,
                         //   symptom:[symptom.symptom],
@@ -192,7 +204,7 @@ function Part2(props: {
                         updateFormData({
                           [symptom.symptom]: e.detail.value,
                         });
-                        console.log(e.detail.keyof);
+                        console.log(e.detail);
                         console.log(e.detail.value);
                         console.log([symptom.symptom]);
                         console.log(chosen);
@@ -228,6 +240,231 @@ function Part2(props: {
 }
 
 
+function Part3(props: {
+  formData: FormState
+  updateFormData: (patch: Partial<FormState>) => void
+}) {
+  const { formData, updateFormData } = props
+  type chosenState = {
+    id: number;
+    symptom: string;
+    level: string;
+  }
+
+
+  const [chosen, setChosen] = useState<chosenState[]>([
+    { id: 9, symptom: "difficulty breathing", level:"0" },
+    { id: 10, symptom: "chest pain", level:"0" },
+    { id: 11, symptom: "loss of taste or smell", level:"0" },
+    { id: 12, symptom: "new confusion", level:"0" },
+  ])
+  const symptoms=[
+    { id: 9, symptom: "difficulty breathing", level:"0" },
+    { id: 10, symptom: "chest pain", level:"0" },
+    { id: 11, symptom: "loss of taste or smell", level:"0" },
+    { id: 12, symptom: "new confusion", level:"0" },
+]
+  return (
+    <IonPage>
+      <IonContent>
+      <div style={{ margin: "1em" }}>
+                        <IonProgressBar value={0.25}></IonProgressBar>
+                        <IonHeader className="ion-text-center">
+
+                            <h3>您有什麼症狀？(其他症狀）</h3>
+                            <h3>What are the symptoms you have? </h3>
+
+                        </IonHeader>
+                        <IonGrid>
+      <IonCol>
+            <IonList>
+                    {symptoms.map((symptom)=>
+                    <IonItem key={symptom.id}>
+                    <IonLabel>{symptom.symptom}</IonLabel>
+                    <IonSelect value={symptom.level} onIonChange={e =>
+            updateFormData({
+              [symptom.symptom]: e.detail.value,
+            })
+          }>
+                    <IonSelectOption value="0">0 沒有</IonSelectOption>
+                    <IonSelectOption value="1">1 輕微</IonSelectOption>
+                    <IonSelectOption value="2">2 中等</IonSelectOption>
+                    <IonSelectOption value="3">3 嚴重</IonSelectOption>
+                    <IonSelectOption value="4">4 非常嚴重</IonSelectOption>
+                    </IonSelect>
+                    </IonItem>
+                    )}
+               
+               
+            </IonList>
+          
+        
+      </IonCol>
+    
+      </IonGrid>
+
+        </div>
+
+      </IonContent>
+
+      <IonFooter>
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
+
+          <IonButton onClick={() => updateFormData({ page: 2 })}>Prev</IonButton>
+          <IonButton onClick={() => updateFormData({ page: 4 })}>Next</IonButton>
+
+        </div>
+
+      </IonFooter>
+    </IonPage >
+
+  )
+}
+
+function Part4(props: {
+  formData: FormState
+  updateFormData: (patch: Partial<FormState>) => void
+}) {
+  const { formData, updateFormData } = props
+  type chosenState = {
+    id: number;
+    symptom: string;
+    level: string;
+  }
+
+
+  const [selected, setSelected] = useState<string>('null');
+]
+  return (
+    <IonPage>
+      <IonContent>
+      <div style={{ margin: "1em" }}>
+            <IonProgressBar value={0.5}></IonProgressBar>
+            <IonHeader className="ion-text-center">
+
+                <h3>詳細身體狀況？</h3>
+                <h3>More information about your health </h3>
+
+            </IonHeader>
+            <IonGrid>
+                <IonCol>
+                    <IonList>
+                        {/* {symptoms.map((id,symptom,level)=>
+                    <IonItem key={id}>
+                    <IonCheckbox></IonCheckbox><IonLabel>{symptom}</IonLabel>
+                    </IonItem>
+                    )} */}
+                        <IonItem key={0}>
+                            <IonLabel>體溫</IonLabel>
+                            <IonSelect value="0" onIonChange={e => {
+                  updateFormData({
+                    "body temperature": e.detail.value,
+                  });
+                  setSelected(e.detail.value);
+                }} >
+                                <IonSelectOption value="35.8-37.2">35.8-37.2&#8451; 沒有發燒</IonSelectOption>
+                                <IonSelectOption value="37.3-38">37.3-38&#8451; 低燒</IonSelectOption>
+                                <IonSelectOption value="38.1-39">38.1-39&#8451; 中燒</IonSelectOption>
+                                <IonSelectOption value="39.1-41">39.1-41&#8451;或以上 高燒</IonSelectOption>
+                                <IonSelectOption value="41.1">41.1&#8451;或以上 超高燒</IonSelectOption>
+                            </IonSelect>
+                        </IonItem>
+
+
+                        <IonItem key={1}>
+                            <IonLabel>痰多少</IonLabel>
+                            <IonSelect value="0" onIonChange={e => {
+                  updateFormData({
+                    "phlegm amount": e.detail.value,
+                  });
+                  setSelected(e.detail.value);
+                }}>
+                                <IonSelectOption value="no">沒有痰</IonSelectOption>
+                                <IonSelectOption value="few">稀痰少</IonSelectOption>
+                                <IonSelectOption value="2">稀痰多</IonSelectOption>
+                                <IonSelectOption value="3">膿痰少</IonSelectOption>
+                                <IonSelectOption value="4">膿痰多</IonSelectOption>
+                            </IonSelect>
+                        </IonItem>
+
+                        <IonItem key={2}>
+                            <IonLabel>可否咳出痰</IonLabel>
+                            <IonSelect value="0" onIonChange={e => {
+                  updateFormData({
+                    "phlegm out": e.detail.value,
+                  });
+                  setSelected(e.detail.value);
+                }}>
+                                <IonSelectOption value="no">沒有痰</IonSelectOption>
+                                <IonSelectOption value="can">可咳出來</IonSelectOption>
+                                <IonSelectOption value="cannot">咳不出來</IonSelectOption>
+                            </IonSelect>
+                        </IonItem>
+
+
+                        <IonItem key={3}>
+                            <IonLabel>痰顏色</IonLabel>
+                            <IonSelect value="0" onIonChange={e => {
+                  updateFormData({
+                    "phlegm color": e.detail.value,
+                  });
+                  setSelected(e.detail.value);
+                }}>
+                                <IonSelectOption value="0">沒有痰</IonSelectOption>
+                                <IonSelectOption value="1">白色</IonSelectOption>
+                                <IonSelectOption value="2">黃色</IonSelectOption>
+                                <IonSelectOption value="3">綠色</IonSelectOption>
+                                <IonSelectOption value="4">痰中帶血</IonSelectOption>
+                            </IonSelect>
+                        </IonItem>
+
+                        <IonItem key={4}>
+                            <IonLabel>發冷</IonLabel>
+                            <IonSelect value={"0"||selected} onIonChange={e => {
+                  updateFormData({
+                    "feeling cold": e.detail.value,
+                  });
+                  setSelected(e.detail.value);
+                }}>
+                                <IonSelectOption value="0">沒有</IonSelectOption>
+                                <IonSelectOption value="1">有</IonSelectOption>
+                            </IonSelect>
+                        </IonItem>
+
+                        <IonItem key={5}>
+                            <IonLabel>疲累</IonLabel>
+                            <IonSelect value="0" onIonChange={e => {
+                  updateFormData({
+                    "fatigue": e.detail.value,
+                  });
+                  setSelected(e.detail.value);
+                }} >
+                                <IonSelectOption value="0">沒有</IonSelectOption>
+                                <IonSelectOption value="1">有</IonSelectOption>
+                            </IonSelect>
+                        </IonItem>
+
+                    </IonList>
+                </IonCol>
+            </IonGrid>
+        </div>
+
+      </IonContent>
+
+      <IonFooter>
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
+
+          <IonButton onClick={() => updateFormData({ page: 3 })}>Prev</IonButton>
+          <IonButton onClick={() => updateFormData({ page: 5})}>Next</IonButton>
+
+        </div>
+
+      </IonFooter>
+    </IonPage >
+
+  )
+}
+
 // function Part2(props: {
 //   formData: FormState
 //   updateFormData: (patch: Partial<FormState>) => void
@@ -254,7 +491,7 @@ function Part2(props: {
 //     </>
 //   )
 // }
-function Part3(props: {
+function Part5(props: {
   formData: FormState
   updateFormData: (patch: Partial<FormState>) => void
 }) {
@@ -282,7 +519,7 @@ function Part3(props: {
         {/* <input type="file" accept="image/*;capture=camera"></input> */}
         <IonButton onClick={pickImage}>pic</IonButton>
       </IonItem>
-      <IonButton onClick={() => updateFormData({ page: 2 })}>Prev</IonButton>
+      <IonButton onClick={() => updateFormData({ page: 4 })}>Prev</IonButton>
       <IonButton>Submit</IonButton>
     </>
   )
@@ -300,6 +537,16 @@ const Home = () => {
     "vomiting": '',
     "diarrhea": '',
     "abdominal pain": '',
+    "difficulty breathing":'' ,
+  "chest pain":'' ,
+  "loss of taste or smell":'',
+  "new confusion":'',
+  "body temperature":'',
+  "phlegm amount":'',
+  "phlegm out":'',
+  "phlegm color":'',
+  "feeling cold":'',
+  "fatigue":'',
   })
 
   const Part = parts[formData.page]
