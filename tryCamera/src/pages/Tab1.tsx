@@ -45,7 +45,7 @@ const Tab1: React.FC = () => {
 
         </div>
 
-        <IonButton color="primary" href="/question">
+        <IonButton color="primary" href="/home">
           開始舌診評測
         </IonButton>
 

@@ -27,7 +27,7 @@ import React from 'react'
 
 type FormState = {
   page: keyof typeof parts
-  covid19_test: string,
+  "What is you COVID-19 test result?": string,
   "cough": string,
   "runny nose": string,
   "headache": string,
@@ -77,43 +77,43 @@ function Part1(props: {
           <IonProgressBar value={0}></IonProgressBar>
           <IonHeader className="ion-text-center" >
 
-            <h3>你確診了2019新冠病毒嗎</h3>
-            <h3>Are you tested positive COVID-19? </h3>
+            <h3>你的2019新冠病毒測試結果</h3>
+            <h3>What is you COVID-19 test result? </h3>
 
           </IonHeader>
 
           <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }} >
             <IonGrid>
               <IonList>
-                <IonRadioGroup value={formData.covid19_test} onIonChange={e => {
+                <IonRadioGroup value={formData["What is you COVID-19 test result?"]} onIonChange={e => {
                   updateFormData({
-                    covid19_test: e.detail.value,
+                    "What is you COVID-19 test result?": e.detail.value,
                   });
                   setSelected(e.detail.value);
                 }}>
                   <IonItem>
-                    <IonRadio slot="start" color="dark" value="positive"></IonRadio>
+                    <IonRadio slot="start" color="dark" value="positive test result"></IonRadio>
                     <IonLabel>
                       positive test result
                     </IonLabel>
 
                   </IonItem>
                   <IonItem>
-                    <IonRadio slot="start" color="dark" value="negative"></IonRadio>
+                    <IonRadio slot="start" color="dark" value="negative test result"></IonRadio>
                     <IonLabel>
                       negative test result
                     </IonLabel>
 
                   </IonItem>
                   <IonItem>
-                    <IonRadio slot="start" color="dark" value="waiting"></IonRadio>
+                    <IonRadio slot="start" color="dark" value="I have not received the test result yet"></IonRadio>
                     <IonLabel>
                       I have not received the test result yet
                     </IonLabel>
 
                   </IonItem>
                   <IonItem>
-                    <IonRadio slot="start" color="dark" value="take no test"></IonRadio>
+                    <IonRadio slot="start" color="dark" value="I did not take a test"></IonRadio>
                     <IonLabel>
                       I did not take a test
                     </IonLabel>
@@ -366,7 +366,7 @@ function Part4(props: {
                                 <IonSelectOption value="37.3-38">37.3-38&#8451; 低燒</IonSelectOption>
                                 <IonSelectOption value="38.1-39">38.1-39&#8451; 中燒</IonSelectOption>
                                 <IonSelectOption value="39.1-41">39.1-41&#8451;或以上 高燒</IonSelectOption>
-                                <IonSelectOption value="41.1">41.1&#8451;或以上 超高燒</IonSelectOption>
+                                <IonSelectOption value="41.1 or higher">41.1&#8451;或以上 超高燒</IonSelectOption>
                             </IonSelect>
                         </IonItem>
 
@@ -379,11 +379,11 @@ function Part4(props: {
                   });
                   setPhlegmAmount(e.detail.value);
                 }}>
-                                <IonSelectOption value="no">沒有痰</IonSelectOption>
-                                <IonSelectOption value="few">稀痰少</IonSelectOption>
-                                <IonSelectOption value="2">稀痰多</IonSelectOption>
-                                <IonSelectOption value="3">膿痰少</IonSelectOption>
-                                <IonSelectOption value="4">膿痰多</IonSelectOption>
+                                <IonSelectOption value="no phlegm">沒有痰</IonSelectOption>
+                                <IonSelectOption value="little clear phlegm">稀痰少</IonSelectOption>
+                                <IonSelectOption value="lot of clear phlegm">稀痰多</IonSelectOption>
+                                <IonSelectOption value="little thick phlegm">膿痰少</IonSelectOption>
+                                <IonSelectOption value="lot of thick phlegm">膿痰多</IonSelectOption>
                             </IonSelect>
                         </IonItem>
 
@@ -395,9 +395,9 @@ function Part4(props: {
                   });
                   setPhlegmOut(e.detail.value);
                 }}>
-                                <IonSelectOption value="no">沒有痰</IonSelectOption>
-                                <IonSelectOption value="can">可咳出來</IonSelectOption>
-                                <IonSelectOption value="cannot">咳不出來</IonSelectOption>
+                                <IonSelectOption value="no phlegm">沒有痰</IonSelectOption>
+                                <IonSelectOption value="can spit">可咳出來</IonSelectOption>
+                                <IonSelectOption value="cannot cough out">咳不出來</IonSelectOption>
                             </IonSelect>
                         </IonItem>
 
@@ -410,11 +410,11 @@ function Part4(props: {
                   });
                   setPhlegmColor(e.detail.value);
                 }}>
-                                <IonSelectOption value="0">沒有痰</IonSelectOption>
-                                <IonSelectOption value="1">白色</IonSelectOption>
-                                <IonSelectOption value="2">黃色</IonSelectOption>
-                                <IonSelectOption value="3">綠色</IonSelectOption>
-                                <IonSelectOption value="4">痰中帶血</IonSelectOption>
+                                <IonSelectOption value="no phlegm">沒有痰</IonSelectOption>
+                                <IonSelectOption value="white">白色</IonSelectOption>
+                                <IonSelectOption value="yellow">黃色</IonSelectOption>
+                                <IonSelectOption value="green">綠色</IonSelectOption>
+                                <IonSelectOption value="phlegm with blood">痰中帶血</IonSelectOption>
                             </IonSelect>
                         </IonItem>
 
@@ -426,8 +426,8 @@ function Part4(props: {
                   });
                   setCold(e.detail.value);
                 }}>
-                                <IonSelectOption value="0">沒有</IonSelectOption>
-                                <IonSelectOption value="1">有</IonSelectOption>
+                                <IonSelectOption value="no">沒有</IonSelectOption>
+                                <IonSelectOption value="yes">有</IonSelectOption>
                             </IonSelect>
                         </IonItem>
 
@@ -439,8 +439,8 @@ function Part4(props: {
                   });
                   setFatigue(e.detail.value);
                 }} >
-                                <IonSelectOption value="0">沒有</IonSelectOption>
-                                <IonSelectOption value="1">有</IonSelectOption>
+                                <IonSelectOption value="no">沒有</IonSelectOption>
+                                <IonSelectOption value="yes">有</IonSelectOption>
                             </IonSelect>
                         </IonItem>
 
@@ -528,7 +528,7 @@ function Part5(props: {
 const Home = () => {
   const [formData, setFormData] = useState<FormState>({
     page: 1,
-    covid19_test: '',
+    "What is you COVID-19 test result?": '',
     "cough": '0',
     "runny nose": '0',
     "headache": '0',
@@ -541,12 +541,12 @@ const Home = () => {
   "chest pain":'0' ,
   "loss of taste or smell":'0',
   "new confusion":'0',
-  "body temperature":'0',
-  "phlegm amount":'0',
-  "phlegm out":'0',
-  "phlegm color":'0',
-  "feeling cold":'0',
-  "fatigue":'0',
+  "body temperature":'35.8-37.2',
+  "phlegm amount":'no phlegm',
+  "phlegm out":'no phlegm',
+  "phlegm color":'no phlegm',
+  "feeling cold":'no',
+  "fatigue":'no',
   // imagePreview?: '',
   // imageFile?:'',
   })
