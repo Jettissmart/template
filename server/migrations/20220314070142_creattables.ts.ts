@@ -113,11 +113,12 @@ await knex.raw(`ALTER TABLE "ai_result" ADD CONSTRAINT "ai_result_reported_id_fo
 
 export async function down(knex: Knex): Promise<void> {
 
-    await knex.schema.dropTableIfExists('users')
+    
     await knex.schema.dropTableIfExists('questions')
     await knex.schema.dropTableIfExists('diagnosis')
     await knex.schema.dropTableIfExists('ai_result')
     await knex.schema.dropTableIfExists('report')
     await knex.schema.dropTableIfExists('case')
+    await knex.schema.dropTableIfExists('users')
 }
 
