@@ -28,14 +28,14 @@ import React from 'react'
 type FormState = {
   page: keyof typeof parts
   covid19_test: string,
-  "cough":string,
-        "runny nose":string,
-        "headache":string,
-        "sore throat":string,
-        "muscle aches":string,
-        "vomiting":string,
-        "diarrhea":string,
-        "abdominal pain":string,
+  "cough": string,
+  "runny nose": string,
+  "headache": string,
+  "sore throat": string,
+  "muscle aches": string,
+  "vomiting": string,
+  "diarrhea": string,
+  "abdominal pain": string,
   imagePreview?: string,
   imageFile?: File,
 }
@@ -137,22 +137,25 @@ function Part2(props: {
   updateFormData: (patch: Partial<FormState>) => void
 }) {
   const { formData, updateFormData } = props
- type chosenState = [
-  { symptom: string, level:string  },
-]
+  type chosenState = {
+    id: number;
+    symptom: string;
+    level: string;
+  }
 
-  const [chosen, setChosen] = useState<any>( [
-    {  symptom: "cough", level:"0"  },
-    {  symptom: "runny nose", level: "0" },
-    {  symptom: "headache", level: "0" },
-    {  symptom: "sore throat", level: "0" },
-    {  symptom: "muscle aches", level: "0" },
-    {  symptom: "vomiting", level: "0" },
-    {  symptom: "diarrhea", level: "0" },
-    { symptom: "abdominal pain", level: "0" },
+
+  const [chosen, setChosen] = useState<chosenState[]>([
+    { id: 1, symptom: "cough", level: "0" },
+    { id: 2, symptom: "runny nose", level: "0" },
+    { id: 3, symptom: "headache", level: "0" },
+    { id: 4, symptom: "sore throat", level: "0" },
+    { id: 5, symptom: "muscle aches", level: "0" },
+    { id: 6, symptom: "vomiting", level: "0" },
+    { id: 7, symptom: "diarrhea", level: "0" },
+    { id: 8, symptom: "abdominal pain", level: "0" },
   ])
   const symptoms = [
-    { id: 1, symptom: "cough", level:"0"  },
+    { id: 1, symptom: "cough", level: "0" },
     { id: 2, symptom: "runny nose", level: "0" },
     { id: 3, symptom: "headache", level: "0" },
     { id: 4, symptom: "sore throat", level: "0" },
@@ -180,27 +183,27 @@ function Part2(props: {
                 {symptoms.map((symptom) =>
                   <IonItem key={symptom.id}>
                     <IonLabel>{symptom.symptom}</IonLabel>
-                    <IonSelect value={chosen.level} onIonChange={e =>{
-                        setChosen({
-
-                          // [symptom.symptom]: e.detail.value,
-                        });
+                    <IonSelect value>={symptom.level} onIonChange={e =>{
+                        // setChosen({
+                        //   id:e.detail.key,
+                        //   symptom:[symptom.symptom],
+                        //   level:e.detail.value
+                        // );
                         updateFormData({
-                        [symptom.symptom]: e.detail.value,
-                      });
-
-                      console.log(e.detail.value);
-                      console.log([symptom.symptom]);
-                      console.log(chosen);
-                       }
-                       
-                      }>
+                          [symptom.symptom]: e.detail.value,
+                        });
+                        console.log(e.detail.keyof);
+                        console.log(e.detail.value);
+                        console.log([symptom.symptom]);
+                        console.log(chosen);
+                  }
+                   }>
                       <IonSelectOption value="0"> 0 沒有</IonSelectOption>
                       <IonSelectOption value="1">1 輕微</IonSelectOption>
                       <IonSelectOption value="2">2 中等</IonSelectOption>
                       <IonSelectOption value="3">3 嚴重</IonSelectOption>
                       <IonSelectOption value="4">4 非常嚴重</IonSelectOption>
-                    </IonSelect>
+                  </IonSelect>  
                   </IonItem>
                 )}
               </IonList>
@@ -213,8 +216,8 @@ function Part2(props: {
       <IonFooter>
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
 
-        <IonButton onClick={() => updateFormData({ page: 1 })}>Prev</IonButton>
-      <IonButton onClick={() => updateFormData({ page: 3 })}>Next</IonButton>
+          <IonButton onClick={() => updateFormData({ page: 1 })}>Prev</IonButton>
+          <IonButton onClick={() => updateFormData({ page: 3 })}>Next</IonButton>
 
         </div>
 
@@ -289,14 +292,14 @@ const Home = () => {
   const [formData, setFormData] = useState<FormState>({
     page: 1,
     covid19_test: '',
-    "cough":'',
-        "runny nose":'',
-        "headache":'',
-        "sore throat":'',
-        "muscle aches":'',
-        "vomiting":'',
-        "diarrhea":'',
-        "abdominal pain":'',
+    "cough": '',
+    "runny nose": '',
+    "headache": '',
+    "sore throat": '',
+    "muscle aches": '',
+    "vomiting": '',
+    "diarrhea": '',
+    "abdominal pain": '',
   })
 
   const Part = parts[formData.page]
