@@ -24,20 +24,11 @@ import { useState } from 'react'
 import { selectImage } from '@beenotung/tslib/file'
 import { compressMobilePhoto, dataURItoBlob } from '@beenotung/tslib/image'
 import React from 'react'
+import { useEffect } from 'react'
 
 type FormState = {
   page: keyof typeof parts
   covid19_test: string,
-<<<<<<< HEAD
-  "cough":string,
-        "runny nose":string,
-        "headache":string,
-        "sore throat":string,
-        "muscle aches":string,
-        "vomiting":string,
-        "diarrhea":string,
-        "abdominal pain":string,
-=======
   "cough": string,
   "runny nose": string,
   "headache": string,
@@ -56,7 +47,6 @@ type FormState = {
   "phlegm color":string,
   "feeling cold":string,
   "fatigue":string,
->>>>>>> main
   imagePreview?: string,
   imageFile?: File,
 }
@@ -64,11 +54,8 @@ const parts = {
   1: Part1,
   2: Part2,
   3: Part3,
-<<<<<<< HEAD
-=======
   4: Part4,
   5: Part5,
->>>>>>> main
 }
 
 function Part1(props: {
@@ -624,16 +611,6 @@ const Home = () => {
   const [formData, setFormData] = useState<FormState>({
     page: 1,
     covid19_test: '',
-<<<<<<< HEAD
-    "cough":'',
-        "runny nose":'',
-        "headache":'',
-        "sore throat":'',
-        "muscle aches":'',
-        "vomiting":'',
-        "diarrhea":'',
-        "abdominal pain":'',
-=======
     "cough": '',
     "runny nose": '',
     "headache": '',
@@ -652,8 +629,15 @@ const Home = () => {
   "phlegm color":'',
   "feeling cold":'',
   "fatigue":'',
->>>>>>> main
   })
+
+  const [questions,setQuestions] = useState([]);
+  useEffect(()=>{
+    (async()=>{
+      //fetch -> localhost:8080/questions
+      setQuestion(.)
+    })();
+  },[])
 
   const Part = parts[formData.page]
   function updateFormData(patch: Partial<FormState>) {
@@ -668,7 +652,7 @@ const Home = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        <Part formData={formData} updateFormData={updateFormData} />
+        <Part formData={formData} updateFormData={updateFormData} questions={questions}/>
         {/* <p>{JSON.stringify(formData, null, 2)}</p> */}
       </IonContent>
     </IonPage>

@@ -10,31 +10,7 @@ import Q5 from '../components/Q5';
 import Upload from '../components/Upload';
 
 function Question() {
-<<<<<<< HEAD
-    const [formData, setFormData] = useState<{
-        covid19_test:string
-        cough:number,
-        "runny nose":number,
-        "headache":number,
-        "sore throat":number,
-        "muscle aches":number,
-        "vomiting":number,
-        "diarrhea":number,
-        "abdominal pain":number
-    }>({
-        covid19_test:'',
-        cough:0,
-        "runny nose":0,
-        "headache":0,
-        "sore throat":0,
-        "muscle aches":0,
-        "vomiting":0,
-        "diarrhea":0,
-        "abdominal pain":0
-    })
-=======
     // const [formData, setFormData] = useState<Array>([])
->>>>>>> main
     const [currentQ, setCurrentQ] = useState(1);
     
     const lastPage = () => {
@@ -48,6 +24,7 @@ function Question() {
         }
 
     }
+    
     return (
         <IonPage>
             <IonHeader collapse="condense">
@@ -55,7 +32,7 @@ function Question() {
                     <IonButtons slot="start" >
                         <IonBackButton defaultHref="/tabs/tab1" />
                     </IonButtons>
-                    <IonTitle> Questionaire </IonTitle>
+                    <IonTitle> Questionnaire </IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen>
