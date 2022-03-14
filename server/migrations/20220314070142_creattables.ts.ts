@@ -8,7 +8,7 @@ export async function up(knex: Knex): Promise<void> {
 //     table.toString("username").notNullable();
 // })
 await knex.raw(`CREATE TABLE "users"(
-    "id" INTEGER NOT NULL,
+    "id" SERIAL PRIMARY KEY,
     "username" INTEGER NOT NULL,
     "password" INTEGER NOT NULL,
     "chronic_disease" VARCHAR(255) NULL,
@@ -25,12 +25,9 @@ await knex.raw(`CREATE TABLE "users"(
 );`)
 
 
-await knex.raw(`ALTER TABLE
-    "users" ADD PRIMARY KEY("id");`)
-
 
 await knex.raw(`CREATE TABLE "questions"(
-    "id" INTEGER NOT NULL,
+    "id" SERIAL PRIMARY KEY,
     "question" TEXT NOT NULL,
     "option_0" VARCHAR(255) NULL,
     "option_1" VARCHAR(255) NULL,
@@ -40,14 +37,12 @@ await knex.raw(`CREATE TABLE "questions"(
     "option_5" VARCHAR(255) NULL,
     "type" VARCHAR(255) NOT NULL,
     "remark" TEXT NULL,
-    "created_at" DATE NOT NULL
+    "created_at" TIMESTAMP(0) WITH TIME zone NOT NULL
 );`)
 
-await knex.raw(`ALTER TABLE
-"questions" ADD PRIMARY KEY("id");`)
 
 await knex.raw(`CREATE TABLE "diagnosis"(
-    "id" INTEGER NOT NULL,
+    "id" SERIAL PRIMARY KEY,
     "diagnosis_results" INTEGER NOT NULL,
     "prescription" TEXT NOT NULL,
     "comments" TEXT NOT NULL,
@@ -57,31 +52,26 @@ await knex.raw(`CREATE TABLE "diagnosis"(
     "created_at" TIMESTAMP(0) WITH TIME zone NOT NULL
 );`)
 
-await knex.raw(`ALTER TABLE
-"diagnosis" ADD PRIMARY KEY("id");`)
 
 await knex.raw(`CREATE TABLE "case"(
-    "id" INTEGER NOT NULL,
+    "id" SERIAL PRIMARY KEY,
     "patient_id" INTEGER NOT NULL,
     "question_id" INTEGER NOT NULL,
     "answer" INTEGER NOT NULL,
     "created_at" INTEGER NOT NULL
 );`)
 
-await knex.raw(`ALTER TABLE
-"case" ADD PRIMARY KEY("id");`)
 await knex.raw(`CREATE TABLE "ai_result"(
-    "id" INTEGER NOT NULL,
+    "id" SERIAL PRIMARY KEY,
     "predict_constitution" VARCHAR(255) NOT NULL,
     "predict_drug" TEXT NOT NULL,
     "patient_id" INTEGER NOT NULL,
     "reported_id" INTEGER NOT NULL,
     "created_at" TIMESTAMP(0) WITH TIME zone NOT NULL
 );`)
-await knex.raw(`ALTER TABLE
-"ai_result" ADD PRIMARY KEY("id");`)
+
 await knex.raw(`CREATE TABLE "report"(
-    "id" INTEGER NOT NULL,
+    "id" SERIAL PRIMARY KEY,
     "patient_id" INTEGER NOT NULL,
     "doctor_id" INTEGER NOT NULL,
     "qna_list" INTEGER NOT NULL,
@@ -89,8 +79,7 @@ await knex.raw(`CREATE TABLE "report"(
     "diagnosis_id" INTEGER NOT NULL,
     "status" VARCHAR(255) NOT NULL
 );`)
-await knex.raw(`ALTER TABLE
-"report" ADD PRIMARY KEY("id");`)
+
 await knex.raw(`ALTER TABLE
 "diagnosis" ADD CONSTRAINT "diagnosis_doctor_id_foreign" FOREIGN KEY("doctor_id") REFERENCES "users"("id");`)
 await knex.raw(`ALTER TABLE
@@ -113,7 +102,6 @@ await knex.raw(`ALTER TABLE "ai_result" ADD CONSTRAINT "ai_result_reported_id_fo
 
 export async function down(knex: Knex): Promise<void> {
 
-    
     await knex.schema.dropTableIfExists('questions')
     await knex.schema.dropTableIfExists('diagnosis')
     await knex.schema.dropTableIfExists('ai_result')
