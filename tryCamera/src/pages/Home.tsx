@@ -164,19 +164,8 @@ function Part2(props: {
     { id: 5, symptom: "muscle aches", level: "0" },
     { id: 6, symptom: "vomiting", level: "0" },
     { id: 7, symptom: "diarrhea", level: "0" },
-    { id: 8, symptom: "abdominal pain", level: "0" }
+    { id: 8, symptom: "abdominal pain", level: "0" },
   ])
-  // const symptoms = [
-  //   { id: 1, symptom: "cough", level: "0" },
-  //   { id: 2, symptom: "runny nose", level: "0" },
-  //   { id: 3, symptom: "headache", level: "0" },
-  //   { id: 4, symptom: "sore throat", level: "0" },
-  //   { id: 5, symptom: "muscle aches", level: "0" },
-  //   { id: 6, symptom: "vomiting", level: "0" },
-  //   { id: 7, symptom: "diarrhea", level: "0" },
-  //   { id: 8, symptom: "abdominal pain", level: "0" },
-  // ]
-
 
   return (
     <IonPage>
@@ -196,23 +185,22 @@ function Part2(props: {
                   <IonItem key={symptom.id}>
                     <IonLabel>{symptom.symptom}</IonLabel>
                     <IonSelect value={symptom.level} onIonChange={e =>{
-                        const newChoose = chosen.slice(0);//MUST
-                        const updateChoose = newChoose.filter((sym:chosenState)=>sym.symptom === symptom.symptom);
-                        //[{ id: 1, symptom: "cough", level: "0" }]
-                        updateChoose[0].level = e.detail.value;
-                        //[{ id: 1, symptom: "cough", level: "1" }]
-                        setChosen(newChoose);
-                        
-                        // const idx = chosen.findIndex(sym=>sym.symptom === symptom.symptom);
-                        // [...chosen.splice(idx,1),{ id: 1, symptom: "cough", level: "1" }]
-
+                        const newChoose = chosen.slice(0);
+                        const updateChoose =newChoose.filter((sym:chosenState)=>sym.symptom===symptom.symptom);
+                         updateChoose[0].level= e.detail.value
+                         setChosen(newChoose);
+                        // setChosen({
+                        //   id:e.detail.key,
+                        //   symptom:[symptom.symptom],
+                        //   level:e.detail.value
+                        // );
                         updateFormData({
                           [symptom.symptom]: e.detail.value,
                         });
-                        // console.log(e.detail);
-                        // console.log(e.detail.value);
-                        // console.log([symptom.symptom]);
-                        // console.log(chosen);
+                        console.log(e.detail);
+                        console.log(e.detail.value);
+                        console.log([symptom.symptom]);
+                        console.log(chosen);
                   }
                    }>
                       <IonSelectOption value="0"> 0 沒有</IonSelectOption>
@@ -263,12 +251,12 @@ function Part3(props: {
     { id: 11, symptom: "loss of taste or smell", level:"0" },
     { id: 12, symptom: "new confusion", level:"0" },
   ])
-  const symptoms=[
-    { id: 9, symptom: "difficulty breathing", level:"0" },
-    { id: 10, symptom: "chest pain", level:"0" },
-    { id: 11, symptom: "loss of taste or smell", level:"0" },
-    { id: 12, symptom: "new confusion", level:"0" },
-]
+//   const symptoms=[
+//     { id: 9, symptom: "difficulty breathing", level:"0" },
+//     { id: 10, symptom: "chest pain", level:"0" },
+//     { id: 11, symptom: "loss of taste or smell", level:"0" },
+//     { id: 12, symptom: "new confusion", level:"0" },
+// ]
   return (
     <IonPage>
       <IonContent>
@@ -283,14 +271,18 @@ function Part3(props: {
                         <IonGrid>
       <IonCol>
             <IonList>
-                    {symptoms.map((symptom)=>
+                    {chosen.map((symptom)=>
                     <IonItem key={symptom.id}>
                     <IonLabel>{symptom.symptom}</IonLabel>
-                    <IonSelect value={symptom.level} onIonChange={e =>
+                    <IonSelect value={symptom.level} onIonChange={e =>{
+                    const newChoose = chosen.slice(0);
+                    const updateChoose =newChoose.filter((sym:chosenState)=>sym.symptom===symptom.symptom);
+                     updateChoose[0].level= e.detail.value
+                     setChosen(newChoose);
             updateFormData({
               [symptom.symptom]: e.detail.value,
             })
-          }>
+                    }}>
                     <IonSelectOption value="0">0 沒有</IonSelectOption>
                     <IonSelectOption value="1">1 輕微</IonSelectOption>
                     <IonSelectOption value="2">2 中等</IonSelectOption>
@@ -336,10 +328,13 @@ function Part4(props: {
     symptom: string;
     level: string;
   }
+  const [temp, setTemp] = useState<string>('35.8-37.2');
+  const [phlegmAmount, setPhlegmAmount] = useState<string>('no');
+  const [out, setPhlegmOut] = useState<string>('no');
+  const [phlegmColor, setPhlegmColor] = useState<string>('no');
+  const [cold, setCold] = useState<string>('0');
+  const [fatigue, setFatigue] = useState<string>('0');
 
-
-  const [selected, setSelected] = useState<string>('null');
-]
   return (
     <IonPage>
       <IonContent>
@@ -361,11 +356,11 @@ function Part4(props: {
                     )} */}
                         <IonItem key={0}>
                             <IonLabel>體溫</IonLabel>
-                            <IonSelect value="0" onIonChange={e => {
+                            <IonSelect value={temp} onIonChange={e => {
                   updateFormData({
                     "body temperature": e.detail.value,
                   });
-                  setSelected(e.detail.value);
+                  setTemp(e.detail.value);
                 }} >
                                 <IonSelectOption value="35.8-37.2">35.8-37.2&#8451; 沒有發燒</IonSelectOption>
                                 <IonSelectOption value="37.3-38">37.3-38&#8451; 低燒</IonSelectOption>
@@ -378,11 +373,11 @@ function Part4(props: {
 
                         <IonItem key={1}>
                             <IonLabel>痰多少</IonLabel>
-                            <IonSelect value="0" onIonChange={e => {
+                            <IonSelect value={phlegmAmount} onIonChange={e => {
                   updateFormData({
                     "phlegm amount": e.detail.value,
                   });
-                  setSelected(e.detail.value);
+                  setPhlegmAmount(e.detail.value);
                 }}>
                                 <IonSelectOption value="no">沒有痰</IonSelectOption>
                                 <IonSelectOption value="few">稀痰少</IonSelectOption>
@@ -394,11 +389,11 @@ function Part4(props: {
 
                         <IonItem key={2}>
                             <IonLabel>可否咳出痰</IonLabel>
-                            <IonSelect value="0" onIonChange={e => {
+                            <IonSelect value={out} onIonChange={e => {
                   updateFormData({
                     "phlegm out": e.detail.value,
                   });
-                  setSelected(e.detail.value);
+                  setPhlegmOut(e.detail.value);
                 }}>
                                 <IonSelectOption value="no">沒有痰</IonSelectOption>
                                 <IonSelectOption value="can">可咳出來</IonSelectOption>
@@ -409,11 +404,11 @@ function Part4(props: {
 
                         <IonItem key={3}>
                             <IonLabel>痰顏色</IonLabel>
-                            <IonSelect value="0" onIonChange={e => {
+                            <IonSelect value={phlegmColor} onIonChange={e => {
                   updateFormData({
                     "phlegm color": e.detail.value,
                   });
-                  setSelected(e.detail.value);
+                  setPhlegmColor(e.detail.value);
                 }}>
                                 <IonSelectOption value="0">沒有痰</IonSelectOption>
                                 <IonSelectOption value="1">白色</IonSelectOption>
@@ -425,11 +420,11 @@ function Part4(props: {
 
                         <IonItem key={4}>
                             <IonLabel>發冷</IonLabel>
-                            <IonSelect value={"0"||selected} onIonChange={e => {
+                            <IonSelect value={cold} onIonChange={e => {
                   updateFormData({
                     "feeling cold": e.detail.value,
                   });
-                  setSelected(e.detail.value);
+                  setCold(e.detail.value);
                 }}>
                                 <IonSelectOption value="0">沒有</IonSelectOption>
                                 <IonSelectOption value="1">有</IonSelectOption>
@@ -438,11 +433,11 @@ function Part4(props: {
 
                         <IonItem key={5}>
                             <IonLabel>疲累</IonLabel>
-                            <IonSelect value="0" onIonChange={e => {
+                            <IonSelect value={fatigue} onIonChange={e => {
                   updateFormData({
                     "fatigue": e.detail.value,
                   });
-                  setSelected(e.detail.value);
+                  setFatigue(e.detail.value);
                 }} >
                                 <IonSelectOption value="0">沒有</IonSelectOption>
                                 <IonSelectOption value="1">有</IonSelectOption>
@@ -534,24 +529,26 @@ const Home = () => {
   const [formData, setFormData] = useState<FormState>({
     page: 1,
     covid19_test: '',
-    "cough": '',
-    "runny nose": '',
-    "headache": '',
-    "sore throat": '',
-    "muscle aches": '',
-    "vomiting": '',
-    "diarrhea": '',
-    "abdominal pain": '',
-    "difficulty breathing":'' ,
-  "chest pain":'' ,
-  "loss of taste or smell":'',
-  "new confusion":'',
-  "body temperature":'',
-  "phlegm amount":'',
-  "phlegm out":'',
-  "phlegm color":'',
-  "feeling cold":'',
-  "fatigue":'',
+    "cough": '0',
+    "runny nose": '0',
+    "headache": '0',
+    "sore throat": '0',
+    "muscle aches": '0',
+    "vomiting": '0',
+    "diarrhea": '0',
+    "abdominal pain": '0',
+    "difficulty breathing":'0' ,
+  "chest pain":'0' ,
+  "loss of taste or smell":'0',
+  "new confusion":'0',
+  "body temperature":'0',
+  "phlegm amount":'0',
+  "phlegm out":'0',
+  "phlegm color":'0',
+  "feeling cold":'0',
+  "fatigue":'0',
+  // imagePreview?: '',
+  // imageFile?:'',
   })
 
   const Part = parts[formData.page]
