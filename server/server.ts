@@ -20,7 +20,7 @@ app.use(express.urlencoded());
 // });
 
 //Get /questions ->localhost:8080/questions
-//from browser to get 
+//browser to get questions from database to browser
 app.get("/questions", async(req: Request, res: Response)=>{
     const questions = await knex("questions").select("id", "question","option_0","option_1","option_2", "option_3", "option_4", "remark")
     res.json(questions);
