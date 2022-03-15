@@ -17,11 +17,11 @@ const Tab1: React.FC = () => {
       </IonHeader>
 
       <IonContent fullscreen className="ion-padding ion-text-center">
-        <IonHeader collapse="condense">
+        {/* <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Homepage</IonTitle>
           </IonToolbar>
-        </IonHeader>
+        </IonHeader> */}
         <h1>智能舌診問卷</h1>
         <h1>I-TONGUE Questionaire</h1>
         
@@ -33,13 +33,19 @@ const Tab1: React.FC = () => {
 
         <div>
           <ol className="step">
+          <li>註冊基本資料
+             </li>
+            <li>指出你的症狀</li>
+            <li>上載舌照</li>
+            <li>獲得測試結果</li>
+            <li>諮詢中醫師</li>
 
-            <li>basic information
+            {/* <li>basic information
             </li>
             <li>report symptoms</li>
             <li>upload the photo of your tongue</li>
             <li>recieve your test result</li>
-            <li>consult Chinese medical doctor</li>
+            <li>consult Chinese medical doctor</li> */}
             
           </ol>
 

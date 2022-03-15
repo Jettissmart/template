@@ -78,7 +78,7 @@ function Part1(props: {
           <IonHeader className="ion-text-center" >
 
             <h3>你的2019新冠病毒測試結果</h3>
-            <h3>What is you COVID-19 test result? </h3>
+            {/* <h3>What is you COVID-19 test result? </h3> */}
 
           </IonHeader>
 
@@ -94,29 +94,42 @@ function Part1(props: {
                   <IonItem>
                     <IonRadio slot="start" color="dark" value="positive test result"></IonRadio>
                     <IonLabel>
-                      positive test result
+                      陽性
                     </IonLabel>
+                    {/* <IonLabel>
+                      positive test result
+                    </IonLabel> */}
 
                   </IonItem>
                   <IonItem>
                     <IonRadio slot="start" color="dark" value="negative test result"></IonRadio>
                     <IonLabel>
-                      negative test result
+                      陰性
                     </IonLabel>
+                    {/* <IonLabel>
+                      negative test result
+                    </IonLabel> */}
 
                   </IonItem>
                   <IonItem>
                     <IonRadio slot="start" color="dark" value="I have not received the test result yet"></IonRadio>
                     <IonLabel>
-                      I have not received the test result yet
+                     等待檢測結果
                     </IonLabel>
+                    {/* <IonLabel>
+                      I have not received the test result yet
+                    </IonLabel> */}
 
                   </IonItem>
                   <IonItem>
                     <IonRadio slot="start" color="dark" value="I did not take a test"></IonRadio>
                     <IonLabel>
-                      I did not take a test
+                      沒有進行檢測
                     </IonLabel>
+                    
+                    {/* <IonLabel>
+                      I did not take a test
+                    </IonLabel> */}
 
                   </IonItem>
 
@@ -132,7 +145,7 @@ function Part1(props: {
       <IonFooter>
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
 
-          <IonButton onClick={() => updateFormData({ page: 2 })}>Next</IonButton>
+          <IonButton color="secondary" onClick={() => updateFormData({ page: 2 })}>Next</IonButton>
 
         </div>
 
@@ -175,7 +188,7 @@ function Part2(props: {
           <IonHeader className="ion-text-center">
 
             <h3>您有什麼症狀？</h3>
-            <h3>What are the symptoms you have? </h3>
+            {/* <h3>What are the symptoms you have? </h3> */}
             <h5>程度0分是沒有症狀，4分為最嚴重</h5>
           </IonHeader>
           <IonGrid>
@@ -221,8 +234,11 @@ function Part2(props: {
       <IonFooter>
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
 
-          <IonButton onClick={() => updateFormData({ page: 1 })}>Prev</IonButton>
-          <IonButton onClick={() => updateFormData({ page: 3 })}>Next</IonButton>
+        <IonButton color="secondary" onClick={() => updateFormData({ page: 1 })}>上一頁</IonButton>
+          <IonButton color="secondary" onClick={() => updateFormData({ page: 3 })}>下一頁</IonButton>
+
+          {/* <IonButton onClick={() => updateFormData({ page: 1 })}>Prev</IonButton>
+          <IonButton onClick={() => updateFormData({ page: 3 })}>Next</IonButton> */}
 
         </div>
 
@@ -261,11 +277,11 @@ function Part3(props: {
     <IonPage>
       <IonContent>
       <div style={{ margin: "1em" }}>
-                        <IonProgressBar value={0.25}></IonProgressBar>
+                        <IonProgressBar value={0.5}></IonProgressBar>
                         <IonHeader className="ion-text-center">
 
                             <h3>您有什麼症狀？(其他症狀）</h3>
-                            <h3>What are the symptoms you have? </h3>
+                            {/* <h3>What are the symptoms you have? </h3> */}
 
                         </IonHeader>
                         <IonGrid>
@@ -307,8 +323,11 @@ function Part3(props: {
       <IonFooter>
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
 
-          <IonButton onClick={() => updateFormData({ page: 2 })}>Prev</IonButton>
-          <IonButton onClick={() => updateFormData({ page: 4 })}>Next</IonButton>
+        <IonButton color="secondary" onClick={() => updateFormData({ page: 2 })}>上一頁</IonButton>
+          <IonButton color="secondary" onClick={() => updateFormData({ page: 4 })}>下一頁</IonButton>
+
+          {/* <IonButton onClick={() => updateFormData({ page: 2 })}>Prev</IonButton>
+          <IonButton onClick={() => updateFormData({ page: 4 })}>Next</IonButton> */}
 
         </div>
 
@@ -339,11 +358,11 @@ function Part4(props: {
     <IonPage>
       <IonContent>
       <div style={{ margin: "1em" }}>
-            <IonProgressBar value={0.5}></IonProgressBar>
+            <IonProgressBar value={0.75}></IonProgressBar>
             <IonHeader className="ion-text-center">
 
                 <h3>詳細身體狀況？</h3>
-                <h3>More information about your health </h3>
+                {/* <h3>More information about your health </h3> */}
 
             </IonHeader>
             <IonGrid>
@@ -451,11 +470,14 @@ function Part4(props: {
 
       </IonContent>
 
-      <IonFooter>
+      <IonFooter slot='bottom'>
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
 
-          <IonButton onClick={() => updateFormData({ page: 3 })}>Prev</IonButton>
-          <IonButton onClick={() => updateFormData({ page: 5})}>Next</IonButton>
+        <IonButton color="secondary" onClick={() => updateFormData({ page: 3 })}>上一頁</IonButton>
+          <IonButton color="secondary" onClick={() => updateFormData({ page: 5})}>下一頁</IonButton>
+
+          {/* <IonButton onClick={() => updateFormData({ page: 3 })}>Prev</IonButton>
+          <IonButton onClick={() => updateFormData({ page: 5})}>Next</IonButton> */}
 
         </div>
 
@@ -489,18 +511,18 @@ function Part5(props: {
   return (
     <>
     <div style={{ margin: "1em" }}>
-                        <IonProgressBar value={0.75}></IonProgressBar>
+                        <IonProgressBar value={1}></IonProgressBar>
                         <IonHeader className="ion-text-center" >
 
                             <h3>請提供您的舌圖 <br />
                                 讓我們更準確地掌握閣下的體質。</h3>
-                            <h3>Please provide two photos of your tongue. </h3>
+                            {/* <h3>Please provide two photos of your tongue. </h3> */}
 
                         </IonHeader>
 
                         <div style={{ display: "block", textAlign: "center", flexWrap: "wrap", margin: "0.5em" }} >
-
-                            <div>1. One of the top of your tongue: open your mouth and stick out the tongue 
+                        {/* 1. One of the top of your tongue: open your mouth and stick out the tongue  */}
+                            <div>你可以拍攝一張舌面圖，然後上載
                              <div style={{display:"flex",justifyContent: "center" }}><img src="/assets/image/tongue-top.jpeg" style={{width:"5em"}}></img></div>
                              </div>
                              {/* <br/> 
@@ -510,26 +532,38 @@ function Part5(props: {
                             </div> */}
 
                             <div style={{ display: "inline-block", textAlign: "left"}}>
-                                <ol>Guideline:
+                            <ol>拍攝舌照的指引：
+                                    <li>自然地伸出舌頭，切勿用力伸出。</li>
+                                    <li>拍攝時，請面向自然光。</li>
+                                    <li>請勿在進食後拍攝舌照，因為舌頭會被食物碎屑或顏色影響。</li>
+                                </ol>
+
+                                {/* <ol>Guideline:
                                     <li>On extension of you tongue it should be done naturally without excessive force.</li>
                                     <li>You should face the natural sunlight when you take the picture.</li>
                                     <li>DO NOT take picture after eating or drinking colored food as it may put on artificial color on your tongue</li>
-                                </ol>
+                                </ol> */}
 
                             </div>
                         </div>
                     </div>
       <IonItem>
-        <IonLabel>Photo</IonLabel>
+        {/* <IonLabel>Photo</IonLabel> */}
+        <IonLabel>上載舌圖</IonLabel>
         <img src={formData.imagePreview} />
         {/* <input type="file" accept="image/*;capture=camera"></input> */}
-        <IonButton onClick={pickImage}>pic</IonButton>
+        <IonButton onClick={pickImage}>按此上載</IonButton>
       </IonItem>
       <IonFooter>
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
 
+        <IonButton color="secondary" onClick={() => updateFormData({ page: 4 })}>上一頁</IonButton>
+      <IonButton color="secondary" onClick={(e)=>{e.preventDefault();
+      console.log(formData)}}>提交</IonButton>
+      
+{/* 
       <IonButton onClick={() => updateFormData({ page: 4 })}>Prev</IonButton>
-      <IonButton>Submit</IonButton>
+      <IonButton>Submit</IonButton> */}
       </div>
       </IonFooter>
     </>
@@ -571,7 +605,7 @@ const Home = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle>Survey</IonTitle>
-          <p>{JSON.stringify(formData, null, 2)}</p>
+          {/* <p>{JSON.stringify(formData, null, 2)}</p> */}
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">

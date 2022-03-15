@@ -7,7 +7,7 @@ export async function seed(knex: Knex): Promise<void> {
 
       // Inserts seed entries
       await knex("questions").insert([
-          { question: "What is you COVID-19 test result?",option_0:"positive test result", option_1:"negative test result", option_2:"I have not received the test result yet",option_3:"I did not take a test", type:"multiple choice"},
+          { question: "What is your COVID-19 test result?",option_0:"positive test result", option_1:"negative test result", option_2:"I have not received the test result yet",option_3:"I did not take a test", type:"multiple choice"},
           { question: "cough",option_0:"0", option_1:"1", option_2:"2",option_3:"3",option_4:"4", type:"multiple choice", remark:"level"  },
           { question: "runny nose",option_0:"0", option_1:"1", option_2:"2",option_3:"3",option_4:"4", type:"multiple choice", remark:"level"  },
           { question: "headache",option_0:"0", option_1:"1", option_2:"2",option_3:"3",option_4:"4", type:"multiple choice", remark:"level"  },

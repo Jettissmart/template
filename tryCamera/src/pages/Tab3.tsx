@@ -9,7 +9,8 @@ const Tab3: React.FC = () => {
     <IonPage>
       <IonHeader >
         <IonToolbar >
-          <IonTitle>My Profile</IonTitle>
+        <IonTitle>我的報告</IonTitle>
+          {/* <IonTitle>My Profile</IonTitle> */}
           <IonIcon icon={settings} slot="end" />
         </IonToolbar>
       </IonHeader>
@@ -22,7 +23,7 @@ const Tab3: React.FC = () => {
                 <IonAvatar slot="start">
                   <img src="/assets/image/avatar-icon.jpeg" />
                 </IonAvatar>
-                <IonLabel>username</IonLabel>
+                <IonLabel>陳大明</IonLabel>
               </IonItem>
             </IonCardTitle>
           </IonCardHeader>
