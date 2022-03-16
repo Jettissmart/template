@@ -3,7 +3,7 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFab, IonFabBut
 import { camera, trash, close, phoneLandscape } from 'ionicons/icons';
 import { usePhotoGallery, UserPhoto } from '../hooks/usePhotoGallery';
 
-const Tab2: React.FC = () => {
+const ContactUsTab: React.FC = () => {
   
 
   return (
@@ -85,4 +85,4 @@ const Tab2: React.FC = () => {
   );
 };
 
-export default Tab2;
+export default ContactUsTab;

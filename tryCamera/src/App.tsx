@@ -1,16 +1,3 @@
-// import Knex from 'knex';
-// const knexConfig = require("./knexfile");
-// const knex = Knex(knexConfig["development"|| process.env.NODE_ENV])
-
-// async function main(){
-//   const staff = await knex.select("*").from ("staff").where("id",">","0");
-//   console.log(staff);
-//   //remeber to close knex after use
-//   knex.destroy();
-// }
-// main();
-
-
 
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
@@ -25,16 +12,19 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { clipboard, chatbubbleEllipses, person } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import NotMatchPage from './pages/NotMatchPage';
+import HomeTab from './pages/HomeTab';
+import ContactUsTab from './pages/ContactUsTab';
+import ProfileTab from './pages/ProfileTab';
+
 import Details from './pages/Details';
 import Question from './pages/Question';
 import Photo from './pages/Photo';
-import Home from './pages/Home';
+import Survey from './pages/Survey';
 import SubmitSuccess from './pages/SubmitSuccess';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -58,31 +48,40 @@ import './theme/variables.css';
 
 /* Global CSS */
 import './global.css';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
+
+import { routes } from './routes';
+
 
 
 
 
 
 const App: React.FC = () => (
+  <Provider store={store}>
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
+        <Route><NotMatchPage/></Route>
+        <Route path={routes.questionnaire} component={Survey} exact={true} />
+        <Route path="/login" component={LoginPage} exact={true} />
+        <Route path="/register" component={RegisterPage} exact={true} />
+        <Route path="/submitSuccess" component={SubmitSuccess} exact={true} />
 
         <Route path="/question" component={Question} exact={true} />
         <Route path="/photo" component={Photo} exact={true} />
-        <Route path="/home" component={Home} exact={true} />
-        <Route path="/submitSuccess" component={SubmitSuccess} exact={true} />
         <Route path="/details" component={Details} exact={true} />
-        <Route path="/login" component={LoginPage} exact={true} />
-        <Route path="/register" component={RegisterPage} exact={true} />
-
-        <Route path="/tabs">
+       
+       
+        <Route>
           <IonTabs>
             <IonRouterOutlet>
-              <Route path="/tabs/tab1" component={Tab1} exact={true} />
-              <Route path="/tabs/tab2" component={Tab2} exact={true} />
+              <Route path={routes.tab.home} component={HomeTab} exact={true} />
+              <Route path={routes.tab.contactUs} component={ContactUsTab} exact={true} />
+              <Route path={routes.tab.profile} component={ProfileTab} />
+
               <Route path="/tabs/tab2/details" component={Details} />
-              <Route path="/tabs/tab3" component={Tab3} />
               <Route path="/" render={() => <Redirect to="/tabs/tab1" />} exact={true} />
             </IonRouterOutlet>
             <IonTabBar slot="bottom">
@@ -105,6 +104,7 @@ const App: React.FC = () => (
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
+  </Provider>
 );
 
 export default App;

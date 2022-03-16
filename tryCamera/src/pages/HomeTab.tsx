@@ -1,18 +1,30 @@
 import React from 'react';
-import { IonButton, IonCheckbox, IonContent, IonHeader, IonIcon, IonItem, IonItemOptions, IonLabel, IonList, IonPage, IonThumbnail, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
-import './Tab1.css';
+import { IonButton, IonContent, IonHeader, IonIcon, IonLabel, IonPage, IonText, IonThumbnail, IonTitle, IonToolbar } from '@ionic/react';
+import './HomeTab.css';
+import { RootState } from '../redux/state';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutAction } from '../redux/auth/action';
 
 
+const Guest = '(guest)'
 
-const Tab1: React.FC = () => {
+const HomeTab: React.FC = () => {
+  const username = useSelector((state: RootState) => state.auth.user?.username || '(guest)',)
+  const dispatch = useDispatch();
+  function logout() {
+    dispatch(logoutAction)
+  }
   return (
 
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonTitle>Questionaire</IonTitle>
-          <IonIcon></IonIcon>
+          <IonText slot="end" className="ion-padding" color="primary">{username}</IonText>
+          <IonText slot="end">{username === Guest ?
+        <IonButton routerLink='/login' fill='outline' color='tertiary'>Login</IonButton>
+        : <IonButton onClick={logout} fill='outline' color='dark'>Logout</IonButton>
+      }</IonText>
         </IonToolbar>
       </IonHeader>
 
@@ -24,7 +36,7 @@ const Tab1: React.FC = () => {
         </IonHeader> */}
         <h1>智能舌診問卷</h1>
         <h1>I-TONGUE Questionaire</h1>
-        
+
 
         <h3>Steps to follow:</h3>
         <p>填寫問卷只需三分鐘
@@ -33,8 +45,8 @@ const Tab1: React.FC = () => {
 
         <div>
           <ol className="step">
-          <li>註冊基本資料
-             </li>
+            <li>註冊基本資料
+            </li>
             <li>指出你的症狀</li>
             <li>上載舌照</li>
             <li>獲得測試結果</li>
@@ -46,7 +58,7 @@ const Tab1: React.FC = () => {
             <li>upload the photo of your tongue</li>
             <li>recieve your test result</li>
             <li>consult Chinese medical doctor</li> */}
-            
+
           </ol>
 
         </div>
@@ -56,13 +68,11 @@ const Tab1: React.FC = () => {
         </IonButton>
 
       </IonContent>
-
-
-
-
-
+      
     </IonPage>
   );
 };
 
-export default Tab1;
+export default HomeTab;
+
+

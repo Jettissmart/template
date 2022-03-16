@@ -14,12 +14,13 @@ import {
 import { useIonAlert } from '@ionic/react'
 import React from 'react'
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 //   import { useDispatch, useSelector } from 'react-redux'
 //   import { Link } from 'react-router-dom'
-//   import { APIResult } from '../components/APIResult'
-//   import { registerAction } from '../redux/auth/action'
+import { APIResult } from '../components/APIResult'
+import { registerAction } from '../redux/auth/action'
 //   import { reduxObjects, reduxObjectsProxy } from '../redux/reducer'
-//   import { RootState } from '../redux/state'
+  import { RootState } from '../redux/state'
 //   import { routes } from '../routes'
 //   import './RegisterPage.css'
 
@@ -35,13 +36,14 @@ type FormState = {
 }
 
 const RegisterPage: React.FC = () => {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const [presentAlert] = useIonAlert();
   // const result = useSelector((state: RootState) => state.authObject.registerResult)
   // const auth = useSelector((state: RootState) => state.authObject.getDispatch())
   // const auth = reduxObjects.auth.mount()
   // const auth = reduxObjectsProxy.auth
   // const result = auth.registerResult
+  const result = useSelector((state:RootState)=>state.auth.registerResult)
 
   //put it within component, so it is local state no need props.formState
   const [formState, setFormState] = useState<FormState>({
@@ -110,7 +112,7 @@ const RegisterPage: React.FC = () => {
       presentAlert(invalidMessage, [{ text: 'Dismiss', role: 'cancel' }])
       return
     }
-    // dispatch(registerAction(formState))
+    dispatch(registerAction(formState))
     // auth.register(formState)
   }
 
@@ -185,7 +187,9 @@ const RegisterPage: React.FC = () => {
         <IonButton expand="block" onClick={submit}>
           Submit
         </IonButton>
-        {/* <APIResult result={result} /> */}
+        
+        
+        <APIResult result={result} />
 
         {/* <p>
              Already registered? <Link to={routes.login}>Go to Login Page</Link>

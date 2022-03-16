@@ -19,7 +19,7 @@ import {
   IonProgressBar,
   IonCol,
 } from '@ionic/react'
-//   import './Home.css'
+
 import { useState } from 'react'
 import { selectImage } from '@beenotung/tslib/file'
 import { compressMobilePhoto, dataURItoBlob } from '@beenotung/tslib/image'
@@ -570,7 +570,7 @@ function Part5(props: {
   )
 }
 
-const Home = () => {
+const Survey = () => {
   const [formData, setFormData] = useState<FormState>({
     page: 1,
     "What is you COVID-19 test result?": '',
@@ -616,4 +616,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Survey

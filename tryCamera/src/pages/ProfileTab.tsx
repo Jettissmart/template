@@ -1,17 +1,17 @@
 import React from 'react';
 import { IonAvatar, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonChip, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonItem, IonLabel, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
-import './Tab3.css';
+import './ProfileTab.css';
 import { pin, settings } from 'ionicons/icons';
-import ExploreContainer from '../components/ExploreContainer';
 
-const Tab3: React.FC = () => {
+
+const ProfileTab: React.FC = () => {
   return (
     <IonPage>
       <IonHeader >
         <IonToolbar >
         <IonTitle>我的報告</IonTitle>
           {/* <IonTitle>My Profile</IonTitle> */}
-          <IonIcon icon={settings} slot="end" />
+          <IonIcon icon={settings} slot="end" className='ion-padding' />
         </IonToolbar>
       </IonHeader>
 
@@ -100,4 +100,4 @@ const Tab3: React.FC = () => {
   );
 };
 
-export default Tab3;
+export default ProfileTab;

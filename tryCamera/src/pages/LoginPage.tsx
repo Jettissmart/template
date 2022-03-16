@@ -6,6 +6,10 @@ import {
     IonToolbar,
   } from '@ionic/react'
 import React, { FormEvent } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { APIResult } from '../components/APIResult'
+import { loginAction } from '../redux/auth/action'
+import { RootState } from '../redux/state'
 
 export let  post  = async (url:string, body?:any) =>{
   let origin = 'http://localhost:8100'
@@ -27,10 +31,11 @@ export let  post  = async (url:string, body?:any) =>{
 }
 
 
-
   
 const LoginPage: React.FC = () => {
-   const login = async (e: FormEvent)=>{
+  const result = useSelector((state:RootState)=>state.auth.loginResult)
+  const dispatch = useDispatch()
+  const login = async (e: FormEvent)=>{
      e.preventDefault();
      let form = e.currentTarget as any
      let user = {
@@ -39,6 +44,7 @@ const LoginPage: React.FC = () => {
      }
      let result = await post('/login', user)
      console.log('login result',result)
+     dispatch(loginAction(user))
    }
     return (
       <IonPage>
@@ -69,7 +75,7 @@ const LoginPage: React.FC = () => {
             <div>
               <input type="submit" value="login"></input>
             </div>
-            {/* <APIResult result={result} /> */}
+            <APIResult result={result} />
           </form>
   
           {/* <p>
@@ -81,4 +87,4 @@ const LoginPage: React.FC = () => {
 }
   
   export default LoginPage
-  
+

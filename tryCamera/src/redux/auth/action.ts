@@ -11,8 +11,9 @@ export function registerAction(
     }
 
     export function loginAction(
-        user:{username:string;
-        password:string
+        user:{
+            username:string;
+            password:string
         }){
             return {
                 type:'@@Auth/login',user
