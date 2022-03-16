@@ -33,6 +33,9 @@ import Question from './pages/Question';
 import Photo from './pages/Photo';
 import Home from './pages/Home';
 import SubmitSuccess from './pages/SubmitSuccess';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -69,6 +72,9 @@ const App: React.FC = () => (
         <Route path="/photo" component={Photo} exact={true} />
         <Route path="/home" component={Home} exact={true} />
         <Route path="/submitSuccess" component={SubmitSuccess} exact={true} />
+        <Route path="/details" component={Details} exact={true} />
+        <Route path="/login" component={LoginPage} exact={true} />
+        <Route path="/register" component={RegisterPage} exact={true} />
 
         <Route path="/tabs">
           <IonTabs>
