@@ -10,9 +10,8 @@ import {
   IonText,
   IonTitle,
   IonToolbar,
-  useIonAlert,
 } from '@ionic/react'
-import { getByPlaceholderText } from '@testing-library/react'
+import { useIonAlert } from '@ionic/react'
 import React from 'react'
 import { useState } from 'react'
 //   import { useDispatch, useSelector } from 'react-redux'
@@ -37,7 +36,7 @@ type FormState = {
 
 const RegisterPage: React.FC = () => {
   // const dispatch = useDispatch()
-  const [presentAlert] = useIonAlert()
+  const [presentAlert] = useIonAlert();
   // const result = useSelector((state: RootState) => state.authObject.registerResult)
   // const auth = useSelector((state: RootState) => state.authObject.getDispatch())
   // const auth = reduxObjects.auth.mount()
@@ -93,6 +92,7 @@ const RegisterPage: React.FC = () => {
     for (let [key, value] of Object.entries(formState)) {
       const field = key as keyof FormState
       const validateMessage = messages[field]
+      //no input value or no error message
       if (!value || validateMessage) {
         return field
       }
@@ -100,6 +100,7 @@ const RegisterPage: React.FC = () => {
   }
   const hintField = getHintField()
 
+  //if there is validateMessage, will show the message alert
   const submit = () => {
     console.log('submit formState:', formState)
     const invalidMessage = Object.values(messages).find(
@@ -193,5 +194,7 @@ const RegisterPage: React.FC = () => {
     </IonPage>
   )
 }
+export default RegisterPage;
 
-export default RegisterPage
+
+
