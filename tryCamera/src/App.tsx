@@ -52,6 +52,8 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 
 import { routes } from './routes';
+import DefaultPage from './pages/DefaultPage';
+import Welcome from './pages/Welcome';
 
 
 
@@ -68,6 +70,7 @@ const App: React.FC = () => (
         <Route path="/login" component={LoginPage} exact={true} />
         <Route path="/register" component={RegisterPage} exact={true} />
         <Route path="/submitSuccess" component={SubmitSuccess} exact={true} />
+        <Route path={routes.welcome} component={Welcome} exact={true} />
 
         <Route path="/question" component={Question} exact={true} />
         <Route path="/photo" component={Photo} exact={true} />
@@ -85,15 +88,15 @@ const App: React.FC = () => (
               <Route path="/" render={() => <Redirect to="/tabs/tab1" />} exact={true} />
             </IonRouterOutlet>
             <IonTabBar slot="bottom">
-              <IonTabButton tab="tab1" href="/tabs/tab1">
+              <IonTabButton tab="tab1" href={routes.tab.home}>
                 <IonIcon icon={clipboard} />
                 <IonLabel>Questionaire</IonLabel>
               </IonTabButton>
-              <IonTabButton tab="tab2" href="/tabs/tab2">
+              <IonTabButton tab="tab2" href={routes.tab.contactUs}>
                 <IonIcon icon={chatbubbleEllipses} />
                 <IonLabel>Contact Us</IonLabel>
               </IonTabButton>
-              <IonTabButton tab="tab3" href="/tabs/tab3">
+              <IonTabButton tab="tab3" href={routes.tab.profile}>
                 <IonIcon icon={person} />
                 <IonLabel>My Profile</IonLabel>
               </IonTabButton>

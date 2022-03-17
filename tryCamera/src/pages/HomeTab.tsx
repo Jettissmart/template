@@ -4,6 +4,7 @@ import './HomeTab.css';
 import { RootState } from '../redux/state';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutAction } from '../redux/auth/action';
+import { routes } from '../routes';
 
 
 const Guest = '(guest)'
@@ -20,7 +21,7 @@ const HomeTab: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle>Questionaire</IonTitle>
-          <IonText slot="end" className="ion-padding" color="primary">{username}</IonText>
+          <IonText slot="end" color="primary">{username}</IonText>
           <IonText slot="end">{username === Guest ?
         <IonButton routerLink='/login' fill='outline' color='tertiary'>Login</IonButton>
         : <IonButton onClick={logout} fill='outline' color='dark'>Logout</IonButton>
@@ -63,7 +64,7 @@ const HomeTab: React.FC = () => {
 
         </div>
 
-        <IonButton color="primary" href="/home">
+        <IonButton color="primary" routerLink={routes.questionnaire}>
           開始舌診評測
         </IonButton>
 

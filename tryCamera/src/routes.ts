@@ -1,11 +1,11 @@
-export let routes ={
-    tab:{
-        home:'/tab/home',
-        contactUs:'/tab/contactUs',
-        profile:'/tab/profile',
-
-        login:'/login',
-        register:'/register',
+export let routes = {
+    tab: {
+        home: '/tab/home',
+        contactUs: '/tab/contactUs',
+        profile: '/tab/profile',
     },
-    questionnaire:'/survey',
-}
+    questionnaire: '/survey',
+    login: '/login',
+    register: '/register',
+    welcome:'/welcome',
+}   
