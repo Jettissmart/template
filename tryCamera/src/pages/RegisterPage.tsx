@@ -15,12 +15,14 @@ import { useIonAlert } from '@ionic/react'
 import React from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 //   import { useDispatch, useSelector } from 'react-redux'
 //   import { Link } from 'react-router-dom'
 import { APIResult } from '../components/APIResult'
 import { registerAction } from '../redux/auth/action'
 //   import { reduxObjects, reduxObjectsProxy } from '../redux/reducer'
   import { RootState } from '../redux/state'
+import { routes } from '../routes'
 //   import { routes } from '../routes'
 //   import './RegisterPage.css'
 
@@ -191,9 +193,9 @@ const RegisterPage: React.FC = () => {
         
         <APIResult result={result} />
 
-        {/* <p>
+        <p>
              Already registered? <Link to={routes.login}>Go to Login Page</Link>
-           </p> */}
+           </p>
       </IonContent>
     </IonPage>
   )

@@ -4,8 +4,13 @@ export let routes = {
         contactUs: '/tab/contactUs',
         profile: '/tab/profile',
     },
-    questionnaire: '/survey',
-    login: '/login',
-    register: '/register',
     welcome:'/welcome',
+    login: '/login',
+    register: '/register', 
+    questionnaire: '/survey',
+    
+    settings:'/settings',
+    about:'/about',
+    terms:'/terms',
+    privacy:'/privacy',
 }   

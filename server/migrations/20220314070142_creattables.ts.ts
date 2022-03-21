@@ -9,12 +9,12 @@ export async function up(knex: Knex): Promise<void> {
 // })
 await knex.raw(`CREATE TABLE "users"(
     "id" SERIAL PRIMARY KEY,
-    "username" INTEGER NOT NULL,
-    "password" INTEGER NOT NULL,
+    "username" VARCHAR(255) NOT NULL,
+    "password" VARCHAR(255) NOT NULL,
     "chronic_disease" VARCHAR(255) NULL,
     "gender" VARCHAR(255) NOT NULL,
     "birthday" DATE NOT NULL,
-    "delivery_address" INTEGER NULL,
+    "delivery_address" VARCHAR(255) NULL,
     "mobile" INTEGER NOT NULL,
     "email" VARCHAR(255) NULL,
     "registered_number" INTEGER NULL,

@@ -7,9 +7,12 @@ import {
   } from '@ionic/react'
 import React, { FormEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { APIResult } from '../components/APIResult'
+import { appName } from '../config'
 import { loginAction } from '../redux/auth/action'
 import { RootState } from '../redux/state'
+import { routes } from '../routes'
 
 export let  post  = async (url:string, body?:any) =>{
   let origin = 'http://localhost:8100'
@@ -78,9 +81,9 @@ const LoginPage: React.FC = () => {
             <APIResult result={result} />
           </form>
   
-          {/* <p>
+          <p>
             New to {appName}? <Link to={routes.register}>Register an account</Link>
-          </p> */}
+          </p>
         </IonContent>
       </IonPage>
     )

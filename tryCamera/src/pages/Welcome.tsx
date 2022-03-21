@@ -5,6 +5,7 @@ import { RootState } from '../redux/state';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutAction } from '../redux/auth/action';
 import { routes } from '../routes';
+import { appName } from '../config';
 
 
 const Guest = '(guest)'
@@ -21,6 +22,7 @@ const Welcome: React.FC = () => {
 
       <IonContent fullscreen className="ion-padding ion-text-center">
         <img style={{height:'30%'}}src='/assets/image/firstImage.png'></img>
+        <p>Welcome to {appName}</p>
         <div>
           <h1>智能舌診問卷</h1>
           <h1>I-TONGUE Questionaire</h1>
@@ -29,14 +31,15 @@ const Welcome: React.FC = () => {
             <br />即可得知你個人體質及適合用什麼中藥
           </p>
           </div>
-
-        <IonButton color="primary" routerLink={routes.login}>
+      
+       <IonButton color="primary" routerLink={routes.login}>
           Login
         </IonButton>
 
-        <IonButton color="primary" routerLink={routes.register}>
+        <IonButton fill='outline' color="primarylight" routerLink={routes.register}>
           I'm new user
         </IonButton>
+        
 
       </IonContent>
 

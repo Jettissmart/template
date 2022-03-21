@@ -12,8 +12,8 @@ const Guest = '(guest)'
 const HomeTab: React.FC = () => {
   const username = useSelector((state: RootState) => state.auth.user?.username || '(guest)',)
   const dispatch = useDispatch();
-  function logout() {
-    dispatch(logoutAction)
+  const logout =()=> {
+    dispatch(logoutAction())
   }
   return (
 
@@ -23,7 +23,7 @@ const HomeTab: React.FC = () => {
           <IonTitle>Questionaire</IonTitle>
           <IonText slot="end" color="primary">{username}</IonText>
           <IonText slot="end">{username === Guest ?
-        <IonButton routerLink='/login' fill='outline' color='tertiary'>Login</IonButton>
+        <IonButton routerLink={routes.login} fill='outline' color='tertiary'>Login</IonButton>
         : <IonButton onClick={logout} fill='outline' color='dark'>Logout</IonButton>
       }</IonText>
         </IonToolbar>

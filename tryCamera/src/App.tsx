@@ -48,15 +48,47 @@ import './theme/variables.css';
 
 /* Global CSS */
 import './global.css';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import { store } from './redux/store';
 
 import { routes } from './routes';
 import DefaultPage from './pages/DefaultPage';
 import Welcome from './pages/Welcome';
+import { State } from 'ionicons/dist/types/stencil-public-runtime';
+import { RootState } from './redux/state';
+
+//protected route for Guest
+const GuestRoute = (props:{
+  exact?:boolean
+  path:string
+  component:React.FC})=>{
+    const isGuest = useSelector((state:RootState)=>!state.auth.user)
+    //must use Component instead of componenet
+    const Component = props.component
+    return (
+       <Route exact={props.exact} path={props.path}>
+         {isGuest? <Component/>: <Redirect to={routes.tab.home}/>}
+
+    </Route>
+    )
+}
 
 
+//protected route for Guest
+const UserRoute = (props:{
+  exact?:boolean
+  path:string
+  component:React.FC})=>{
+    const isGuest = useSelector((state:RootState)=>!state.auth.user)
+    //must use Component instead of componenet
+    const Component = props.component
+    return (
+       <Route exact={props.exact} path={props.path}>
+         {!isGuest? <Component/>: <LoginPage/>}
 
+    </Route>
+    )
+}
 
 
 
@@ -66,26 +98,28 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonRouterOutlet>
         <Route><NotMatchPage/></Route>
-        <Route path={routes.questionnaire} component={Survey} exact={true} />
-        <Route path="/login" component={LoginPage} exact={true} />
-        <Route path="/register" component={RegisterPage} exact={true} />
-        <Route path="/submitSuccess" component={SubmitSuccess} exact={true} />
-        <Route path={routes.welcome} component={Welcome} exact={true} />
+        <GuestRoute path={routes.login} component={LoginPage} exact={true} />
+        <GuestRoute path={routes.register} component={RegisterPage} exact={true} />
+        <GuestRoute path={routes.welcome} component={Welcome} exact={true} />
 
+        <UserRoute path={routes.questionnaire} component={Survey} exact={true} />
+        <Route path="/submitSuccess" component={SubmitSuccess} exact={true} />
+        <Route path="/" component={DefaultPage} exact={true} />
+        
+        
         <Route path="/question" component={Question} exact={true} />
         <Route path="/photo" component={Photo} exact={true} />
         <Route path="/details" component={Details} exact={true} />
-       
        
         <Route>
           <IonTabs>
             <IonRouterOutlet>
               <Route path={routes.tab.home} component={HomeTab} exact={true} />
               <Route path={routes.tab.contactUs} component={ContactUsTab} exact={true} />
-              <Route path={routes.tab.profile} component={ProfileTab} />
+              <UserRoute path={routes.tab.profile} component={ProfileTab} />
 
               <Route path="/tabs/tab2/details" component={Details} />
-              <Route path="/" render={() => <Redirect to="/tabs/tab1" />} exact={true} />
+              {/* <Route path="/" render={() => <Redirect to="/tabs/tab1" />} exact={true} /> */}
             </IonRouterOutlet>
             <IonTabBar slot="bottom">
               <IonTabButton tab="tab1" href={routes.tab.home}>

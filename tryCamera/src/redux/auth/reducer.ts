@@ -6,8 +6,9 @@ import { AuthState } from "./state";
 //deafult initial state
 //at begining user is null and the user list is empty since no one has registered
 function initialState(): AuthState {
+    let username = localStorage.getItem('username')
     return {
-        user: null,
+        user: username? {username}:null,
         userPasswordDict: {},
         registerResult:{type:'idle'},
         loginResult:{type:'idle'}
@@ -24,6 +25,7 @@ export function authReducer(
     action: AuthAction): AuthState {
     switch (action.type) {
         case '@@Auth/logout':
+            localStorage.removeItem('username')
             return { ...state, user: null, loginResult:{type:'idle'} }
         case '@@Auth/register': {
             if (action.user.username in state.userPasswordDict){
@@ -32,10 +34,13 @@ export function authReducer(
                 message:`"${action.user.username}" is already occupied by others`,},
             }
             }
-            //register success
+            //register success-> auto login (set localStorage Username)
+            localStorage.setItem('username',action.user.username)
             return{
                 //copy state and in userPasswordDict-> add original content copy and add new record
-                ...state, userPasswordDict:{
+                ...state, 
+                user:{username:action.user.username},
+                userPasswordDict:{
                     ...state.userPasswordDict,
                     [action.user.username]:action.user.password,
                 },
@@ -63,6 +68,7 @@ export function authReducer(
                     message:`The password for "${action.user.username}" is incorrect`,},
                 }
             }//login success
+            localStorage.setItem('username',action.user.username)
             return { ...state, user: { username: action.user.username },
         loginResult:{
             type:'success',
