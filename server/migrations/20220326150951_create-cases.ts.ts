@@ -6,7 +6,7 @@ export async function up(knex: Knex): Promise<void> {
     const hasTable = await knex.schema.hasTable('cases');
     if (!hasTable) {
         await knex.schema.createTable('cases', (table) => {
-            table.increments(); //id
+            table.increments('id'); //id
             table.integer('patient_id'); //id for the form when there are several forms
             table.integer('form_id'); //id for the form when there are several forms
             table.jsonb('answers');// patient answer for each form submission

@@ -6,15 +6,16 @@ export async function up(knex: Knex): Promise<void> {
     const hasTable = await knex.schema.hasTable('question_list');
     if (!hasTable) {
         await knex.schema.createTable('question_list', (table) => {
-            table.increments(); //id
-            table.integer('form_id'); //id
+            table.increments('id'); //id
+            table.integer('form_id'); //id for the form when there are several forms
             table.string('code');
             table.string('title');
             table.string('type'); //MC, long question, short question
             table.text('description');
-            table.string('options');
+            table.specificType('options','JSON ARRAY');
             table.integer('min');
             table.integer('max');
+            table.timestamps(false,true); //create both created_at ,updated_at
         });
     } else {
         return Promise.resolve();
