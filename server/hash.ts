@@ -10,6 +10,6 @@ export async function hashPassword(password:string){
 
 //use object to include password and password_hash, no need to know which one is the first
 export async function comparePassword(o:{password:string, password_hash:string}){
-    let isMatch:boolean = await compare(o.assword,o.password_hash)
+    let isMatch:boolean = await compare(o.password,o.password_hash)
     return isMatch
 }

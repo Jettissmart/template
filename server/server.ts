@@ -2,13 +2,17 @@ import express, {Request, Response} from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 import {knex} from './knex';
+import { UserService } from './user-Service';
 
 
 const app = express();
 
 app.use(express.json());
-
 app.use(express.urlencoded());
+
+let userService = new UserService(knex)
+
+
 
 //from browser to submit form to DB
 //Get /questions -> http://localhost:8080/questions
