@@ -8,7 +8,8 @@ export let routes = {
     login: '/login',
     register: '/register', 
     questionnaire: '/survey',
-    
+    submitSuccess:'/submitSuccess',
+
     settings:'/settings',
     about:'/about',
     terms:'/terms',

@@ -103,7 +103,7 @@ const App: React.FC = () => (
         <GuestRoute path={routes.welcome} component={Welcome} exact={true} />
 
         <UserRoute path={routes.questionnaire} component={Survey} exact={true} />
-        <Route path="/submitSuccess" component={SubmitSuccess} exact={true} />
+        <UserRoute path={routes.submitSuccess} component={SubmitSuccess} exact={true} />
         <Route path="/" component={DefaultPage} exact={true} />
         
         

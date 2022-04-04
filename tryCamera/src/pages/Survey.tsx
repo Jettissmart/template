@@ -20,10 +20,14 @@ import {
   IonCol,
 } from '@ionic/react'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { selectImage } from '@beenotung/tslib/file'
 import { compressMobilePhoto, dataURItoBlob } from '@beenotung/tslib/image'
 import React from 'react'
+import { routes } from '../routes'
+import { Redirect, Router } from 'react-router'
+import { navigate } from 'ionicons/icons'
+import SubmitSuccess from './SubmitSuccess'
 
 type FormState = {
   page: keyof typeof parts
@@ -558,8 +562,10 @@ function Part5(props: {
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
 
         <IonButton color="secondary" onClick={() => updateFormData({ page: 4 })}>上一頁</IonButton>
-      <IonButton color="secondary" onClick={(e)=>{e.preventDefault();
-      console.log(formData)}}>提交</IonButton>
+      <IonButton color="secondary" 
+      onClick={(e)=>{
+      console.log(formData);}
+      } routerLink={routes.submitSuccess}>提交</IonButton>
       
 {/* 
       <IonButton onClick={() => updateFormData({ page: 4 })}>Prev</IonButton>
@@ -597,9 +603,22 @@ const Survey = () => {
   })
 
   const Part = parts[formData.page]
+  
   function updateFormData(patch: Partial<FormState>) {
-    setFormData(state => ({ ...state, ...patch }))
+    setFormData(state => ({ ...state, ...patch }))  
   }
+  
+    const [questionSet, setQuestionSet] =useState([]);
+    useEffect(()=>{
+      (async()=>{
+        const res = await fetch("http://localhost:8080/questions");
+        const questions = await res.json();
+        console.log(questions)
+        setQuestionSet(questions)
+      })();}
+    )
+  
+  
   return (
     <IonPage>
       <IonHeader>
@@ -610,7 +629,9 @@ const Survey = () => {
       </IonHeader>
       <IonContent className="ion-padding">
         <Part formData={formData} updateFormData={updateFormData} />
+        
         {/* <p>{JSON.stringify(formData, null, 2)}</p> */}
+        <p>{questionSet}</p>
       </IonContent>
     </IonPage>
   )
