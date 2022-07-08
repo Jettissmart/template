@@ -2,24 +2,29 @@ import express, {Request, Response} from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 import {knex} from './knex';
-import { UserService } from './user-Service';
-
+import { UserService } from './userService';
+import  { UserController } from './userController';
+import cors from 'cors';
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded());
 
-let userService = new UserService(knex)
+export let userService = new UserService(knex as any)
+let userController = new UserController(userService)
 
+
+//return router
+app.use(userController.getRouter())
+
+app.use(cors());
 
 
 //from browser to submit form to DB
 //Get /questions -> http://localhost:8080/questions
 app.post("/questionnaire", (req: Request, res: Response)=>{
     // const formData = req.body; //request form from browser
-    
-
 
  
 });
@@ -50,3 +55,5 @@ app.post("/login", async(req: Request, res: Response)=>{
 
 
 app.listen(process.env.PORT, ()=>{console.log( `backend server is listening to PORT ${process.env.PORT}`)})
+
+

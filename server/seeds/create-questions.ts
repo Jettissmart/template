@@ -8,7 +8,55 @@ export async function seed(knex: Knex): Promise<void> {
       // Inserts seed entries
       await knex("question_list").insert([
           {form_id:1,code:"COVID_test", title:"test result", type:"options",description:"What is your COVID-19 test result?", 
-          options:[{code:"positive",value:"positive"}, {code:"negative",value:"negative"},{code:"no test result", value:"I have not received the test result yet"}, {code:"not test", value:"I did not take a test"}, {code:"recovered", value:"I have just recovered from COVID"}]},
+          options:[{code:"positive",value:"positive"}, {code:"negative",value:"negative"},
+                   {code:"no test result", value:"I have not received the test result yet"}, 
+                   {code:"not test", value:"I did not take a test"},
+                   {code:"recovered", value:"I have just recovered from COVID"}]
+          },
+          {form_id:1,code:"cough", title:"symptom", type:"range",description:"cough", 
+          min:0, max:4
+          },
+          {form_id:1,code:"runny nose", title:"symptom", type:"range",description:"runny nose", 
+          min:0, max:4
+          },
+          {form_id:1,code:"headache", title:"symptom", type:"range",description:"headache", 
+          min:0, max:4
+          },
+          {form_id:1,code:"sore throat", title:"symptom", type:"range",description:"sore throat", 
+          min:0, max:4
+          },
+          {form_id:1,code:"muscle aches", title:"symptom", type:"range",description:"muscle aches", 
+          min:0, max:4
+          },
+          {form_id:1,code:"vomiting", title:"symptom", type:"range",description:"vomiting", 
+          min:0, max:4
+          },
+          {form_id:1,code:"diarrhea", title:"symptom", type:"range",description:"diarrhea", 
+          min:0, max:4
+          },
+          {form_id:1,code:"abdominal pain", title:"symptom", type:"range",description:"abdominal pain", 
+          min:0, max:4
+          },
+          {form_id:1,code:"difficulty breathing", title:"symptom", type:"range",description:"difficulty breathing", 
+          min:0, max:4
+          },
+          {form_id:1,code:"chest pain", title:"symptom", type:"range",description:"chest pain", 
+          min:0, max:4
+          },
+          {form_id:1,code:"loss of taste or smell", title:"symptom", type:"range",description:"loss of taste or smell", 
+          min:0, max:4
+          },
+          {form_id:1,code:"new confusion", title:"symptom", type:"range",description:"new confusion", 
+          min:0, max:4
+          },
+          {form_id:1,code:"body temperature", title:"symptom", type:"range",description:"body temperature", 
+          min:34, max:43
+          },
+          {form_id:1,code:"phlegm amount", title:"symptom", options:[{code:"positive",value:"positive"}, {code:"negative",value:"negative"},
+          {code:"no test result", value:"I have not received the test result yet"}, 
+          {code:"not test", value:"I did not take a test"},
+          {code:"recovered", value:"I have just recovered from COVID"}]
+          },
       ]);
 };
 

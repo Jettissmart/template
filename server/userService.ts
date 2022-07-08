@@ -17,9 +17,15 @@ export class UserService {
         return this.knex('users')
     }
 
+    async getUser(username: string){
+        await this.table()
+        .select('id','password_hash')
+        .where({username:username})
+    }
+
     //create JWT token with 3month valid 
     createToken(user_id:number){
-        let payload:JWTPayload ={id:user_id, exp: Date.now()+90*DAY}
+        let payload:JWTPayload ={id:user_id,exp: Date.now()+90*DAY}
         let token:string = jwt.encode(payload, jwtConfig.jwtSecret)
         return token
     }
@@ -40,15 +46,22 @@ export class UserService {
         return payload
        
     }
+
+
     async register(user: RegisterUserWithPasswordDTO){
         let rows: any[]= await this.table().insert(user).returning('id')
-        return rows[0].id as number
+        let id = rows[0].id as number
+        let token:string = this.createToken(id)
+        return token
     }
+
+// user can login 
     async login(user: LoginUserWithPasswordDTO){
         let row = await this.table()
         .select('id','password_hash')
         .where({username:user.username})
         .first()
+
       if(!row){
           throw new HttpError('User not found, username:' + user.username, 401)
       }
@@ -57,6 +70,8 @@ export class UserService {
       if (!isMatch){
         throw new HttpError('Wrong username or password', 401)
       }
-      
+      let token: string = this.createToken(row)
+      return token
+  
     }
 }

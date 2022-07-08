@@ -41,6 +41,7 @@ export type User ={
 
 export type JWTPayload ={
     id:number //user_id
+
     exp:number //expire_at (ms)
 }
 
