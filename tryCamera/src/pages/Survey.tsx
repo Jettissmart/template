@@ -3,8 +3,6 @@ import {
   IonHeader,
   IonPage,
   IonTitle,
-  IonSegment,
-  IonSegmentButton,
   IonToolbar,
   IonItem,
   IonLabel,
@@ -576,6 +574,7 @@ function Part5(props: {
   )
 }
 
+//main component
 const Survey = () => {
   const [formData, setFormData] = useState<FormState>({
     page: 1,
@@ -608,14 +607,19 @@ const Survey = () => {
     setFormData(state => ({ ...state, ...patch }))  
   }
   
-    const [questionSet, setQuestionSet] =useState([]);
-    useEffect(()=>{
+  const [questionSet, setQuestionSet] =useState([]);
+
+  useEffect(()=>{
       (async()=>{
-        const res = await fetch("http://localhost:8080/questions");
-        const questions = await res.json();
-        console.log(questions)
-        setQuestionSet(questions)
-      })();}
+      try { const res = await fetch("http://localhost:8080/questions");
+      const questions = await res.json();
+      console.log(questions)
+      setQuestionSet(questions)
+        
+      } catch (error) {
+       
+      }
+      })();},[]
     )
   
   
@@ -624,14 +628,15 @@ const Survey = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle>Survey</IonTitle>
+          <p>{JSON.stringify(questionSet)} </p>
           {/* <p>{JSON.stringify(formData, null, 2)}</p> */}
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
         <Part formData={formData} updateFormData={updateFormData} />
-        
+       
         {/* <p>{JSON.stringify(formData, null, 2)}</p> */}
-        <p>{questionSet}</p>
+        
       </IonContent>
     </IonPage>
   )
